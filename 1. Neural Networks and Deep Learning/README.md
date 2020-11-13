@@ -9,3 +9,15 @@
 
 ### Logistic regression’s weights w should be initialized randomly rather than to all zeros, because if you initialize to all zeros, then logistic regression will fail to learn a useful decision boundary because it will fail to “break symmetry”  True/False? (Logstic regression's 가중치 w는 random으로 초기화해야한다, 0으로 초기화 할경우 break symmetry 현상이 발생한다. T/F?)  
 - Logistic regression은 hidden layer가 없어 모델이 X의 값에 영향을 받는다. 따라서 두 번째 반복에서 가중치 값은 x의 분포를 따르고 x가 일정한 벡터가 아닌 경우 값이 무조건 값이 다르게 나온다.
+
+
+## 4. Key concepts on Deep Neural Networks
+
+### which ones are "hyperparameters"?
+- Number of layer L in the neural network, size of the hidden layers n[l], learning rate, number of iterations  
+
+### Vectorization allows you to compute forward propagation in an LL-layer neural network without an explicit for-loop (or any other explicit iterative loop) over the layers l=1, 2, …,L. True/False?
+- False, 계층을 처음부터 L까지 방문한다 치면 반복문으로 처리 하는 방법 밖에는 없음.  
+
+### During forward propagation, in the forward function for a layer ll you need to know what is the activation function in a layer (Sigmoid, tanh, ReLU, etc.). During backpropagation, the corresponding backward function also needs to know what is the activation function for layer ll, since the gradient depends on it. True/False? (forward propagation를 하는 동안에, 이전 layer에 대한 activation function이 무엇인지 알 필요가 있다, 그리고 backpropagation 동안, 이전 layer에 대한 activation funtion이 무엇인지 알 필요가 있다. (T/F?))
+- 각 계층에는 각각의 activation funtion이 있어, backpropagation 과정에서 올바른 기울기를 계산하기 위해 어떤 activation function이 사용되었는지를 알아야 한다.
