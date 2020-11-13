@@ -20,7 +20,7 @@
 - Overfitting을 막기위해 사용  
 - L1, L2 regularization 등 종류가 있음.
 
-### Bias / Variance  
+### Bias / Variance     
 (사진)
 
 - 첫 번째 경우 : Train set에서는 오류가 적고 Dev Set에서는 오류가 큼  
@@ -43,3 +43,8 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 ### Regularization  
 - Weight를 조정하는데에 제약을 거는 기법. Overfitting을 방지하는데 사용한다.
+- 일반적으로 L2 (Norm 2) Regularization을 사용 (Weight decay)  
+(사진)
+#### 왜 Regularization을 하면 Overfitting이 방지가 될까?
+- Tanh 함수를 예로 들면  
+- 람다가 커짐 -> W 매개변수 작아짐 (Cost Function를 최소하하기 위해) -> Z값의 범위가 좁아짐 -> 함수가 선형인 함수처럼 변함 -> 덜 overfitting 해짐  
