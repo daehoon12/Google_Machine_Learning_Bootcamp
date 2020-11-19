@@ -5,18 +5,23 @@
 ### Normalization, Standardization, Regularization
 
 #### Normalization  
-- 값의 범위(Scale)를 0~1 사이로 바꾸는 것  
+![다운로드](https://user-images.githubusercontent.com/32921115/99683281-85665e80-2ac3-11eb-8b41-ea7d2be14304.png)
+
+- 값의 범위(Scale)를 0~1 사이로 바꿔 데이터의 분포를 조정    
 - 머신 러닝에서 **scale이 큰 feature의 영향이 비대해지는 것**을 방지  
 - 딥 러닝에서 Local Minima에 빠질 위험 감소 (학습 속도 향상)  
 
 #### Standardization  
-- 값의 범위(Scale)를 평균 0, 분산 1이 되도록 변환  
+![2304E84656B1B53A07](https://user-images.githubusercontent.com/32921115/99683358-99aa5b80-2ac3-11eb-88ed-e8cfa3d3aea6.png)
+
+- 값의 범위(Scale)를 평균 0, 분산 1이 되도록 변환, 데이터의 분포를 조정  
 - 머신 러닝에서 **scale이 큰 feature의 영향이 비대해지는 것**을 방지  
 - 딥 러닝에서 Local Minima에 빠질 위험 감소 (학습 속도 향상)  
 - 정규 분포를 표준정규분포로 변환하는 것과 같다.  
 
 #### Regularization  
-- Weight를 조정하는데에 제약을 거는 기법  
+![다운로드](https://user-images.githubusercontent.com/32921115/99683950-408ef780-2ac4-11eb-9009-9f061020cfb1.png)
+- Weight를 조정하는데에 제약을 거는 기법, 보통 Cost function에 L2 Norm을 더함
 - Overfitting을 막기위해 사용  
 - L1, L2 regularization 등 종류가 있음.
 
