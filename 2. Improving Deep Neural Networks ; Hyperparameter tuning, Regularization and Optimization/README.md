@@ -49,7 +49,9 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 ### Regularization  
 - Weight를 조정하는데에 제약을 거는 기법. Overfitting을 방지하는데 사용한다.
 - 일반적으로 L2 (Norm 2) Regularization을 사용 (**Weight decay**)  
-(사진)
+
+![9933B6495B79164D0E](https://user-images.githubusercontent.com/32921115/99686703-315d7900-2ac7-11eb-9571-e427871643a4.png)
+
 
 #### 왜 Regularization을 하면 Overfitting이 방지가 될까?
 - Tanh 함수를 예로 들면  
