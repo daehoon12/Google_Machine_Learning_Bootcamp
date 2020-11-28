@@ -93,4 +93,9 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
 - Stochastic Gradient Descent : batch size를 1로 지정한다.  
 ![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
-- 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**
+- 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**  
+- Mini-batch size는 보통 2의 지수로 설정한다.  
+![image](https://user-images.githubusercontent.com/32921115/100493758-8b240a00-317d-11eb-8827-f1dea27d554f.png)
+
+#### batch를 정하는 방법  
+- Training set가 작을 때 (m <=2000)이면 그냥 batch size로 학습하고, 이것보다 크면 2의 지수 (64,128,256,512)로 한다.
