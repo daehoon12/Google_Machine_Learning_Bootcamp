@@ -88,3 +88,9 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - Gradient Checking은 계산할 때 굉장히 Expensive하기 때문에 학습할 때는 무조건 꺼야한다.  
 - 파란 선은 실제 미분 했을 때 구해지는 접선의 기울기, **GradApprox 공식**을 이용해 구한 선과 근사하다. 
 ![687474703a2f2f692e696d6775722e636f6d2f5846556d384d472e6a7067](https://user-images.githubusercontent.com/32921115/99241947-df57f180-2841-11eb-818f-28615872c19c.jpg)
+
+### Mini-batch gradient descent  
+- 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
+- Stochastic Gradient Descent : batch size를 1로 지정한다.  
+![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
+- 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**
