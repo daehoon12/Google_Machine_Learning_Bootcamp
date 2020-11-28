@@ -93,9 +93,28 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
 - Stochastic Gradient Descent : batch size를 1로 지정한다.  
 ![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
+
 - 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**  
 - Mini-batch size는 보통 2의 지수로 설정한다.  
 ![image](https://user-images.githubusercontent.com/32921115/100493758-8b240a00-317d-11eb-8827-f1dea27d554f.png)
 
 #### batch를 정하는 방법  
 - Training set가 작을 때 (m <=2000)이면 그냥 batch size로 학습하고, 이것보다 크면 2의 지수 (64,128,256,512)로 한다.
+
+### Understanding exponentially weighted averages  
+- 데이터의 이동 평균을 구할 때, 오래된 데이터가 미치는 영향을 지수적으로 감쇠(exponential decay) 하도록 만들어 주는 방법.  
+- 손실함수의 최저점을 찾기 위한 최적화 알고리즘을 이해하기 위해서 필요한 사전 지식 중의 하나.  
+![image](https://user-images.githubusercontent.com/32921115/100493952-f4a51800-317f-11eb-8a2d-f497a64c903b.png)
+- 베타 : 0 ~ 1 사이의 값을 갖는 hyperparameter  
+- 세타 : 새로 들어온 데이터  
+- V : 현재의 경향을 나타내는 값  
+![image](https://user-images.githubusercontent.com/32921115/100493963-169e9a80-3180-11eb-80e0-09163086b799.png)
+- 이렇게 대입하면 베타는 더 작아지고 베타를 계수로 가진 Vn-2가 작아짐. -> **오래된 데이터일수록 현재의 경향을 표현하는데 더 적은 영향을 미친다.**  
+- 이 V 값을 근사적으로 1/1-베타d일 간의 데이터를 사용해 평균을 취하는 것과 같음.  
+ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50일 간의 데이터를 가지고 가중 평균을 구한 것. ![image](https://user-images.githubusercontent.com/32921115/100494002-96c50000-3180-11eb-8236-fc173a8421a9.png)
+- 위의 그림에서 녹색선은 B가 0.98일 때 (50일간의 가중평균), 붉은선은 B가 0.9 (10일간의 가중평균)일 때다.  - 녹색은 50일간 데이터를 모두 반영하다보니 **최신의 동향을 반영하기보다는 과거의 데이터에 치중한 경향을 보이고**, 붉은색은 **상대적으로 최신의 데이터를 반영하므로 녹색보단 가볍게 최신 경향을 캐치한다 볼수 있음.**  
+
+### Bias Correction in Exponentially Weighted Average  
+- Gradient decent를 조금 더 빠르게 해주는 알고리즘  
+![image](https://user-images.githubusercontent.com/32921115/100494063-2f5b8000-3181-11eb-9c6e-8b68b6162da5.png)
+- 보라색 선을 보면 처음에 값이 매우 낮음. bias correction을 이용해 보라색의 낮은 위치를 초록선으로 올려줌
