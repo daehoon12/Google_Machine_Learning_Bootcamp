@@ -132,3 +132,9 @@ ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50�
 - W 방향으로 learning이 빨리 되기를 바람.  
 - W는 크게, b는 작게 만들어야 learning이 빨리 된다.  
 - 즉 dw의 값을 작게, db의 값을 크게 만들어 학습을 하면 된다.
+
+### Adam  
+![image](https://user-images.githubusercontent.com/32921115/100494634-bc550800-3186-11eb-9179-8de3fa15693e.png)
+- Momentum과 RMSProb을 합침. 성능이 제일 좋으므로 Gradient Optimization 알고리즘을 선택할 때 항상 Default로 할 것!  
+- 기존 RMSprop과 Momentum 방식에 Bias 보정식을 사용헀다.  
+- Hyperparameter는 보통 B1 (Momentum)에 0.9, B2 (RMSProp)에 0.999, 입실론은 10^-8을 함.
