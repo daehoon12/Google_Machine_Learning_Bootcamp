@@ -138,3 +138,12 @@ ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50�
 - Momentum과 RMSProb을 합침. 성능이 제일 좋으므로 Gradient Optimization 알고리즘을 선택할 때 항상 Default로 할 것!  
 - 기존 RMSprop과 Momentum 방식에 Bias 보정식을 사용헀다.  
 - Hyperparameter는 보통 B1 (Momentum)에 0.9, B2 (RMSProp)에 0.999, 입실론은 10^-8을 함.
+
+### Learning rate decay (학습 속도 감소법)
+![image](https://user-images.githubusercontent.com/32921115/100494745-f2df5280-3187-11eb-9e8c-e0b3f255cc57.png)
+- 학습 초기에는 큰 스텝으로 움직이고, 학습이 점점 다 되면 학습 속도를 느려지게 한다.  
+
+**수식**  
+![image](https://user-images.githubusercontent.com/32921115/100494769-38038480-3188-11eb-9ea9-f1119ac3cf20.png)
+ex) 알파0이 0.2일 때  
+![image](https://user-images.githubusercontent.com/32921115/100494779-5b2e3400-3188-11eb-8e8e-971cda3026ef.png)
