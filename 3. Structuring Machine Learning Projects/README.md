@@ -106,3 +106,14 @@ TV를 튜닝할 수 있는 5개의 버튼과 다이얼이 있다.
 #### 요약  
 ![image](https://user-images.githubusercontent.com/32921115/100577256-2a363680-3323-11eb-9f3d-53f0b5bd7800.png)
 - human level error를 알면 bayes error를 정의할 수 있고, 이후 알고리즘에서 bias나 variance를 줄일 것인지 알 수 있다.  
+
+### Improving your model performance  
+
+#### Assumptions  
+![image](https://user-images.githubusercontent.com/32921115/100578020-c3198180-3324-11eb-80c4-5e1bda91804e.png)
+- 1번 경우는 낮은 Avoidable bias를 얻을 수 있다.  
+- 2번 경우는 Variance가 나쁘지 않다는 것을 알 수 있다.
+
+#### Reducing bias and variance  
+![image](https://user-images.githubusercontent.com/32921115/100578119-f52ae380-3324-11eb-933f-660242298b6e.png)
+
