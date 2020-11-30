@@ -35,12 +35,18 @@ TV를 튜닝할 수 있는 5개의 버튼과 다이얼이 있다.
   - 그리고 Running time이 100ms 보다 작은 것중에 고름. (Satisficing Metric)  
   - 최고의 Classifier를 선택하기 더 편해진다!
 
+
 ### Train/dev/test distributions  
 ![image](https://user-images.githubusercontent.com/32921115/100573474-3d450880-331b-11eb-922a-b1fb9426ffa7.png)
 - 8개국이 Cat classfication을 만든다 가정.  
 - US, UK, Europ, South America는 Dev 나머지는 test set -> dev set과 test set이 다른 분포도를 가짐.  
 - 이렇게 나누지 말고 8개국이 모은 데이터를 무작위로 dev와 test set에 넣자.  
 
-
+## 결론 ##  
 - Dev/Test Set은 같은 분포도를 가져야 한다.    
 - 미래에 어떤 데이터를 반영 시킬지 생각해 그 데이터를 dev, test에 넣어라.  
+
+### Size of dev and test sets  
+- 데이터 사이즈가 작을 때 (10,000 이하) 일때는 train, test 비율이 (7:3)이 맞으나, 빅 데이터에선 더 이상 맞지 않음.  
+- 보통 빅 데이터에선, train : dev : test 비율이 98:1:1이다.  
+- Test Set의 목적은 최종 Cost를 평가하는 것이므로, 이 목적에 맞게 적당한 크기의 Test Set을 설정 해야한다.
