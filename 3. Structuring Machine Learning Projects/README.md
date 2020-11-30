@@ -42,7 +42,7 @@ TV를 튜닝할 수 있는 5개의 버튼과 다이얼이 있다.
 - US, UK, Europ, South America는 Dev 나머지는 test set -> dev set과 test set이 다른 분포도를 가짐.  
 - 이렇게 나누지 말고 8개국이 모은 데이터를 무작위로 dev와 test set에 넣자.  
 
-## 결론 ##  
+#### 결론
 - Dev/Test Set은 같은 분포도를 가져야 한다.    
 - 미래에 어떤 데이터를 반영 시킬지 생각해 그 데이터를 dev, test에 넣어라.  
 
