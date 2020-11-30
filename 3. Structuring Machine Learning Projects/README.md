@@ -30,9 +30,17 @@ TV를 튜닝할 수 있는 5개의 버튼과 다이얼이 있다.
 1. 선형적으로 두 척도를 계산   
   - Cost = (Accuracy) - 0.5*(running time)  
   - 너무 인위적이고 적합하지 않음.  
-
 2. Optimizing and Satisficing Metrics (최적화와 조건 척도)  
   - Accuracy가 최대인 Classifier를 선택 (Optimizing Metric)  
   - 그리고 Running time이 100ms 보다 작은 것중에 고름. (Satisficing Metric)  
   - 최고의 Classifier를 선택하기 더 편해진다!
 
+### Train/dev/test distributions  
+![image](https://user-images.githubusercontent.com/32921115/100573474-3d450880-331b-11eb-922a-b1fb9426ffa7.png)
+- 8개국이 Cat classfication을 만든다 가정.  
+- US, UK, Europ, South America는 Dev 나머지는 test set -> dev set과 test set이 다른 분포도를 가짐.  
+- 이렇게 나누지 말고 8개국이 모은 데이터를 무작위로 dev와 test set에 넣자.  
+
+
+- Dev/Test Set은 같은 분포도를 가져야 한다.    
+- 미래에 어떤 데이터를 반영 시킬지 생각해 그 데이터를 dev, test에 넣어라.  
