@@ -5,6 +5,7 @@
    3. Directory 이름에 따라 이미지에 자동으로 레이블을 지정할 수 있는 기능  
    4. Image Augmentation 기능  
    
+   
 - Train Data와 Validation Data의 Acc가 차이가 많이 나면 **Overfitting**을 의심해야한다.  
 - Q. Overffiting이 작은 Dataset에 많이 나타나는 이유는?  
 - A. Training 중 모든 feature에 대한 likelihood가 적기 때문이다.  
