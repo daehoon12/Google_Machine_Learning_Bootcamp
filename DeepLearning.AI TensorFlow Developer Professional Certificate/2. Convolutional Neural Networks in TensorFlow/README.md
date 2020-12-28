@@ -24,7 +24,6 @@
 - 어떤 뉴런의 이웃 뉴런들은 비슷한 weight를 가질 수 있고, 그래서 마지막 training을 왜곡할 수 있기 때문이다.  
 ## Quiz  
 - Train Data와 Validation Data의 Acc가 차이가 많이 나면 **Overfitting**을 의심해야한다.  
-- Q. Overffiting이 작은 Dataset에 많이 나타나는 이유는?  
-- A. Training 중 모든 feature에 대한 likelihood가 적기 때문이다.  
+- Overffiting이 작은 Dataset에 많이 나타나는 이유는, Training 중 **모든 feature에 대한 likelihood가 적기 때문**이다.  
 - Transfer learning Model에서도 Image Augmentation 사용 가능  
-- DropOut이 너무 높으면, network의 특성을 잃어, 비효율적인 learning이 일어나기도 한다.  
+- DropOut이 너무 높으면, **network의 특성을 잃어, 비효율적인 learning**이 일어나기도 한다.  
