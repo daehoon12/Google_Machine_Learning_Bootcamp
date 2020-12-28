@@ -12,6 +12,10 @@
 - texts_to_sequences(sentences) : sentences의 word들을 index로 변환해 저장  
 - pad_sequence() : data의 전처리를 담당. 제일 긴 데이터의 길이를 기준으로 padding 함. parameter에 따라 앞 or 뒤에 padding 가능.  
 
+## Model  
+- keras.layers.Embedding(vocab_size, 16) : vocab_size는 사전의 크기, 두번째 parameter인 16은 생성되는 임베딩 벡터의 크기, **10,000개 의 단어에 대한 크기 16의 임베딩 벡터를 10,000개 만든다.**  
+- keras.layers.GlobalAveragePooling1D(문장 수, 단어 수, embedding 벡터 크기) : (문장 수, embedding_vector size)로 바꿈, **입력으로 사용되는 리뷰에 포함된 단어 개수가 변경되더라도 같은 크기의 벡터로 처리할 수 있게 된다.**  
+
 ## Word Embedding  
 - 워드 임베딩(Word Embedding)은 단어를 벡터로 표현하는 방법으로, 단어를 밀집 표현(Dense Representation)으로 변환  
 - 케라스에서 제공하는 도구인 Enbedding()는 단어를 랜덤한 값을 가지는 밀집 벡터로 변환한 뒤에 인공 신경의 Weight를 학습하는 것과 같은 방식으로 단어 벡터를 학습하는 방법을 사용  
