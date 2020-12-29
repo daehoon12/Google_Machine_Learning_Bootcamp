@@ -29,7 +29,7 @@
 ![image](https://user-images.githubusercontent.com/32921115/103260453-0547e880-49e1-11eb-9691-4e450877554a.png)
 
 1. Embedding Layer의 Parameter 개수  
-  - 128 * input_size (3211) = 411008  
+   - 128 x input_size (3211) = 411008  
 2. LSTM  
    - 4(128 + 120 + 1) * 120 * 2 = 239040  
    
