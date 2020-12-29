@@ -51,3 +51,33 @@
   
 - Model을 평가하는데의 지표  
 - 보통 mse, mae 많이 사용  
+
+## Naive Forecast  
+![image](https://user-images.githubusercontent.com/32921115/103262797-5065f980-49e9-11eb-850f-5ca087edf125.png)
+  
+  
+- 이전 time stamp를 그대로 재사용  
+
+## Moving Average  
+![image](https://user-images.githubusercontent.com/32921115/103262823-5eb41580-49e9-11eb-96f6-bb2e09c4caf9.png)
+  
+  
+- 일정한 Time에서 Time + Window size의 평균 값을 사용  
+ex) 10시간 동안의 평균 값을 다음 예측 값으로 사용  
+
+## Differencing  
+![image](https://user-images.githubusercontent.com/32921115/103262866-7b504d80-49e9-11eb-8947-0f1f49499653.png)
+  
+  
+- Seasonality를 없애기 위해 값을 빼줌  
+- 1년 전의 데이터를 다 빼서 Cycle을 없애서 Random한 값을 뽑아냄  
+
+## Differencing + Moving Average  
+
+- 여기서 아까 뺏던 365일의 차이값을 다시 더하면 아래의 그래프가 나온다.  
+![image](https://user-images.githubusercontent.com/32921115/103262900-99b64900-49e9-11eb-8ef5-00d34f4f5fd2.png)  
+
+- 여기서 원본의 Data의 Moving Average를 더하면 이런 그래프가 나온다.  
+
+![image](https://user-images.githubusercontent.com/32921115/103262942-bf435280-49e9-11eb-9b53-99bcddb052ad.png)
+  
