@@ -1,29 +1,25 @@
 # 개념  
-## ImageGenerator  
-   1. Training을 위해 이미지를 쉽게 로드할 수 있는 기능  
-   2. Train Image 크기를 선택할 수 있는 기능  
-   3. Directory 이름에 따라 이미지에 자동으로 레이블을 지정할 수 있는 기능  
-   4. Image Augmentation 기능  
-   
-   
-- Train Data와 Validation Data의 Acc가 차이가 많이 나면 **Overfitting**을 의심해야한다.  
-- Q. Overffiting이 작은 Dataset에 많이 나타나는 이유는?  
-- A. Training 중 모든 feature에 대한 likelihood가 적기 때문이다.  
 
-## Image Augmentation 
-   1. 이미지 crop, 좌우 반전, size 조절 등 다양한 기법을 통해 원래 data의 양을 늘림.  
-   2. Image 처리에 Cycle이 필요해 Training 속도가 약간 느려짐.  
-   3. Augmentation data는 **Memory**에 저장됨.  
- 
-## Dropout  
-- Model을 regularize하는 방법 중 하나. Hidden Layer에서 드롭아웃(dropout)을 확률 p로 적용하는 경우, Hidden Unit들을 p 확률로 제거하는 것이 됨.  
+## Time Series Patterns  
 
-### Dropout을 하는 이유  
-- 랜덤으로 Unit을 비활성화 시켜서 모든 Unit이 골구로 Learning 될 수 있게 해줌.  
-- 어떤 Unit들 너무 학습이 되어 Weight나 Bias가 커지면 다른 Unit들의 learning에 문제가 생기는 현상을 막아줌.  
-- 어떤 뉴런의 이웃 뉴런들은 비슷한 weight를 가질 수 있고, 그래서 마지막 training을 왜곡할 수 있기 때문이다.  
-## Quiz  
-- Train Data와 Validation Data의 Acc가 차이가 많이 나면 **Overfitting**을 의심해야한다.  
-- Overffiting이 작은 Dataset에 많이 나타나는 이유는, Training 중 **모든 feature에 대한 likelihood가 적기 때문**이다.  
-- Transfer learning Model에서도 Image Augmentation 사용 가능  
-- DropOut이 너무 높으면, **network의 특성을 잃어, 비효율적인 learning**이 일어나기도 한다.  
+### Trend  
+- 시간이 지남에 따라 변환하는 경향  
+- 변화 방향에 따라 증가, 감소, 유지로 나뉨  
+- Linear, Non-linear trend 존재  
+
+### Seasonality  
+- 일정 기간 동안 나타나는 패턴  
+- 4계절이 아니더라도 일간, 연간 등 반복적인 규칙을 Seasonality로 볼 수 있음.  
+- 아이스크림, 의류 등 소비재 쪽에서 많이 보임  
+
+### Cycles  
+- Seasonality와 비슷하긴 하지만 구간이 정해져 있지 않음  
+- 즉, 고정된 빈도가 아닌 형태로 증가나 감소하는 모습을 보일 때 Cycle이 나타난다고 한다.  
+
+**Example**  
+![image](https://user-images.githubusercontent.com/32921115/103260896-b602b780-49e2-11eb-8736-6df4a6ba0a66.png)
+
+1. 매년 강한 Seasonality와 Cycle을 보임, 하지만 전체적인 Trend는 보이지 않음  
+2. 가격이 내려가는 Trend를 보임  
+3. 강한 Seasonality와 함께 증가 Trend를 보임  
+4. No Seasonality, No Cycle and No Trend  
