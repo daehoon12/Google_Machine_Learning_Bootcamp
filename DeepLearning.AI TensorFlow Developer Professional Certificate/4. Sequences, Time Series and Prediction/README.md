@@ -73,6 +73,8 @@ ex) 10시간 동안의 평균 값을 다음 예측 값으로 사용
 - 1년 전의 데이터를 다 빼서 Cycle을 없애서 Random한 값을 뽑아냄  
 
 ## Differencing + Moving Average  
+![image](https://user-images.githubusercontent.com/32921115/103262984-e13cd500-49e9-11eb-9edb-86f71953e298.png)
+
 
 - 여기서 아까 뺏던 365일의 차이값을 다시 더하면 아래의 그래프가 나온다.  
 ![image](https://user-images.githubusercontent.com/32921115/103262900-99b64900-49e9-11eb-8ef5-00d34f4f5fd2.png)  
