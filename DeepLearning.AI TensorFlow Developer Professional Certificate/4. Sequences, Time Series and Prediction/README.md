@@ -33,4 +33,21 @@
   
   
 - 이전의 Pattern이 현재 Pattern에 영향을 끼침  
-- 데이터가 spike 때문에 약간 튀더라도 이전 패턴과 비슷  
+- 데이터가 spike 때문에 Scale이 다르더라도 이전 패턴과 비슷  
+
+## Non-stationary time series  
+![image](https://user-images.githubusercontent.com/32921115/103262302-f153b500-49e7-11eb-99ec-62c8bef02c49.png)
+  
+  
+- trend나 seasonality가 갑자기 깨지는 time series  
+- 이 time series를 예측하는 방법은 거의 불가능함. 그래서 갑자기 데이터가 변하는 부분을 training set으로 정함.  
+
+## Fixed Partitioning  
+![image](https://user-images.githubusercontent.com/32921115/103262409-32e46000-49e8-11eb-8848-bac3cefee47e.png)
+  
+## Metrics  
+![image](https://user-images.githubusercontent.com/32921115/103262564-a4241300-49e8-11eb-88a9-598422202e51.png)
+  
+  
+- Model을 평가하는데의 지표  
+- 보통 mse, mae 많이 사용  
