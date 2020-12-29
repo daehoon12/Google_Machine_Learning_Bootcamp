@@ -15,7 +15,23 @@
 ## Model  
 - keras.layers.Embedding(vocab_size, 16) : vocab_size는 사전의 크기, 두번째 parameter인 16은 생성되는 임베딩 벡터의 크기, **10,000개 의 단어에 대한 크기 16의 임베딩 벡터를 10,000개 만든다.**  
 - keras.layers.GlobalAveragePooling1D(문장 수, 단어 수, embedding 벡터 크기) : (문장 수, embedding_vector size)로 바꿈, **입력으로 사용되는 리뷰에 포함된 단어 개수가 변경되더라도 같은 크기의 벡터로 처리할 수 있게 된다.**  
+- SimpleRNN() : RNN을 정의, activation의 기본값은 tanh  
+- LSTM(96) : LSTM 정의, 여기서 96은 Unit의 수, 앞에 **Bidirectional** 붙일 시 양방향에서 학습.  
 
+### Model Parameter 구하는 방법  
+1. Embedding  
+  - input 개수 * embedding dim  
+2. LSTM  
+  - activation function 3개 + tanh1개, 총 4개의 함수가 존재  
+  - 기존의 인풋 n, 이전의 값 m, bias 1  
+  - **4(n + m + 1) x m**  
+**Example**
+![image](https://user-images.githubusercontent.com/32921115/103260453-0547e880-49e1-11eb-9691-4e450877554a.png)
+1. Embedding Layer의 Parameter 개수  
+  - 128 * input_size (3211) = 411008  
+2. LSTM  
+   - 4(128 + 120 + 1) * 120 * 2= 239040  
+   
 ## Word Embedding  
 - 워드 임베딩(Word Embedding)은 단어를 벡터로 표현하는 방법으로, 단어를 밀집 표현(Dense Representation)으로 변환  
 - 케라스에서 제공하는 도구인 Enbedding()는 단어를 랜덤한 값을 가지는 밀집 벡터로 변환한 뒤에 인공 신경의 Weight를 학습하는 것과 같은 방식으로 단어 벡터를 학습하는 방법을 사용  
