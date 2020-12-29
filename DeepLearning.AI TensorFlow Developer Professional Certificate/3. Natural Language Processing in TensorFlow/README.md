@@ -27,10 +27,11 @@
   - **4(n + m + 1) x m**  
 **Example**
 ![image](https://user-images.githubusercontent.com/32921115/103260453-0547e880-49e1-11eb-9691-4e450877554a.png)
+
 1. Embedding Layer의 Parameter 개수  
   - 128 * input_size (3211) = 411008  
 2. LSTM  
-   - 4(128 + 120 + 1) * 120 * 2= 239040  
+   - 4(128 + 120 + 1) * 120 * 2 = 239040  
    
 ## Word Embedding  
 - 워드 임베딩(Word Embedding)은 단어를 벡터로 표현하는 방법으로, 단어를 밀집 표현(Dense Representation)으로 변환  
