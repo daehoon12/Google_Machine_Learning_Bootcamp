@@ -33,6 +33,7 @@
 - 휴리스틱한 방식을 사용하기 때문에 Local Minumum을 가질 위험이 있음.  
 
 ## Activation Functions  
+
 ### 1. Sigmoid
 
 ![image](https://user-images.githubusercontent.com/32921115/103338807-ec176880-4ac2-11eb-987d-f5befdfd9a0e.png)
@@ -80,3 +81,10 @@
 
 - Relu의 단점을 해결하기 위해 나온 함수.  
 
+## Getting your matrix dimensions right  
+
+![image](https://user-images.githubusercontent.com/32921115/103340668-0273f300-4ac8-11eb-97b5-b06aa37dad7a.png)
+
+- W의 Dimension = (사용자가 지정한 Unit의 개수, 이전의 input의 개수)  
+- b의 Dimension = (사용자가 지정한 Unit의 개수, 1)
+- layer의 Parameter 수 = 위의 행렬값 곱한것들을 다 더한다.  
