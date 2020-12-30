@@ -7,7 +7,8 @@
   
   **그림으로 보는 차이점**  
   
-  ![image](https://user-images.githubusercontent.com/32921115/103337324-49f58180-4abe-11eb-9893-a7e03e538a79.png)
+![image](https://user-images.githubusercontent.com/32921115/103337355-685b7d00-4abe-11eb-9da9-c8f7dc611038.png)
+
 
   ## Activation Functions  
   
