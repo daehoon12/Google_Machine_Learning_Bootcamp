@@ -71,18 +71,34 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 아래 사진과 같이 Unnormalized 한 그래프에서는 Learning Rate를 매우 작게 설정해야 정상적인 학습이 되는데 이유는 cost 그래프가 너무 길쭉 (elongaed) 하기 때문이다. 즉 Input의 Range가 서로 다르면 **경사 하강법**을 적용하는 것이 매우 까다롭다.  
 - Normalization을 적용해 **Spherical**한 그래프를 만들자! 그러면 더 빠르게 경사 하강법으로 최적화 지점을 찾게 된다.  
 
+![image](https://user-images.githubusercontent.com/32921115/103342188-39e49e80-4acc-11eb-853d-5ae4179ebad6.png)
+
 ### Vanishing/Exploding Gradients  
 - Vanishing Gradient : Backprob시 Gradients가 너무 작아지는 현상  
 - Exploding Gradient : Backprob시 Gradients가 너무 커지는 현상  
 - 두 경우 다 학습이 제대로 이뤄지지 않는다.  
 
 #### 해결책  
+- **초기에 W를 어떻게 초기화 할 것인가?**  
 - Single Neuron에서 예를 들자  
 - Z = w1x1 + w2x2 +... + WnXn에서 N이 커질 수록 Wi는 작아지는 것을 원한다  
 - Wi의 편차를 1/n으로 설정  
 - 만약 ReLu를 쓸 경우 편차를 2/n으로 설정하는 것이 더 작동을 잘함.  
 - TanH를 이용하는 경우 root(1/n[l-1])를 사용하면 작동을 잘한다. (Xavier Intialization)
-(사진)  
+### Weight Initialization for Deep Networks  
+N(in) : 이전 Node의 수, N(out) : 다음 Layer의 Node 수  
+
+### 1. Xavier Intialization  
+
+![image](https://user-images.githubusercontent.com/32921115/103344291-8383b800-4ad1-11eb-86a9-1c8cac4bafdc.png)
+
+- TanH, Sigmoid Activation 함수를 사용할 때 사용하는 초기화 방법. (np.random.rand(shape) * Xavier)  
+
+### 2. He Initialization
+
+![image](https://user-images.githubusercontent.com/32921115/103344317-99917880-4ad1-11eb-829f-77af7685ea72.png)
+
+- Relu 함수를 사용할 때 사용하는 Weight 초기화 방법.  
 
 ### Gradient Checking  
 - Backprogation ALgorithm은 구현이 복잡하고 여러 방법으로 구현 가능  
