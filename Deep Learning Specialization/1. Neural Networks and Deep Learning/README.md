@@ -33,7 +33,7 @@
 - 휴리스틱한 방식을 사용하기 때문에 Local Minumum을 가질 위험이 있음.  
 
 ## Activation Functions  
-1. Sigmoid
+### 1. Sigmoid
 
 ![image](https://user-images.githubusercontent.com/32921115/103338807-ec176880-4ac2-11eb-987d-f5befdfd9a0e.png)
 
@@ -49,7 +49,7 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/103339353-85934a00-4ac4-11eb-952e-55436570b208.png)
 
-2. TanH
+### 2. Tanh
 
 ![image](https://user-images.githubusercontent.com/32921115/103339082-c8085700-4ac3-11eb-9ff3-d07a0529dadf.png)
 
@@ -61,7 +61,7 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/103339318-6bf20280-4ac4-11eb-9220-5129db496d6e.png)
 
-3. ReLu  
+### 3. ReLu  
 
 ![image](https://user-images.githubusercontent.com/32921115/103339178-0dc51f80-4ac4-11eb-9bf0-9e5b9e6a90cc.png)
 
@@ -74,10 +74,9 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/103339288-5250bb00-4ac4-11eb-9eb0-189892e7f306.png)
 
-4. Leakly Relu  
+### 4. Leakly Relu  
 
 ![image](https://user-images.githubusercontent.com/32921115/103339270-4107ae80-4ac4-11eb-81ee-f798e37cd1cf.png)
 
 - Relu의 단점을 해결하기 위해 나온 함수.  
-
 
