@@ -25,8 +25,10 @@
 - Overfitting을 막기위해 사용  
 - L1, L2 regularization 등 종류가 있음.
 
-### Bias / Variance     
-(사진)
+### Bias / Variance   
+
+![image](https://user-images.githubusercontent.com/32921115/103342008-bfb41a00-4acb-11eb-9eb5-9cc49a81a3ad.png)
+
 
 - 첫 번째 경우 : Train set에서는 오류가 적고 Dev Set에서는 오류가 큼  
   -> Overfitting (High Variance)  
