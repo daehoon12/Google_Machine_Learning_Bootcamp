@@ -199,3 +199,11 @@ ex) 알파0이 0.2일 때
 ### 2) Gradient Vanishing/ Exploding 방지  
 - Gradient라는 것이 결국 미분값 변량을 의미하는데 이 값이 매우 Vanishing or Exploding 해지면 Network를 효과적으로 Learning하지 못함.  
 - Batch Normalization은 학습하는 과정 자체를 전체적으로 안정화"하여 학습 속도를 가속 시킬 수 있는 근본적인 방법  
+
+## 3) Multi-class classfication  
+### Softmax Regression  
+### Softmax Function  
+
+![image](https://user-images.githubusercontent.com/32921115/103522203-60844a00-4ebd-11eb-97bc-7fc6f38c3fa3.png)
+
+- Neuron Network의 output layer에서 사용하는 Activation Function, **Output의 총 합이 1이며** **Multi-class classfication에서 사용**  
