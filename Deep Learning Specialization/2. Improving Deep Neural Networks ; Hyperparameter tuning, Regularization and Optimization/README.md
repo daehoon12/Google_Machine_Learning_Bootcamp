@@ -107,9 +107,11 @@ N(in) : 이전 Node의 수, N(out) : 다음 Layer의 Node 수
 - 파란 선은 실제 미분 했을 때 구해지는 접선의 기울기, **GradApprox 공식**을 이용해 구한 선과 근사하다. 
 ![687474703a2f2f692e696d6775722e636f6d2f5846556d384d472e6a7067](https://user-images.githubusercontent.com/32921115/99241947-df57f180-2841-11eb-818f-28615872c19c.jpg)
 
+## 2. Optimization algorithms  
+
 ### Mini-batch gradient descent  
 - 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
-- Stochastic Gradient Descent : batch size를 1로 지정한다.  
+- **Stochastic Gradient Descent** : batch size를 **1**로 지정한다.  
 ![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
 
 - 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**  
@@ -165,3 +167,21 @@ ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50�
 ![image](https://user-images.githubusercontent.com/32921115/100494769-38038480-3188-11eb-9ea9-f1119ac3cf20.png)
 ex) 알파0이 0.2일 때  
 ![image](https://user-images.githubusercontent.com/32921115/100494779-5b2e3400-3188-11eb-8e8e-971cda3026ef.png)
+
+## 3. Hyperparameter tuning, Batch Normalization and Programming Frameworks  
+
+## 1) Hyperparameter Tuning  
+
+### Tuning Process  
+- 하이퍼파라미터 튜닝 중 가장 중요한 것 : learning rate (알파) > hidden units, mini-batch size, 베타 > layers, learning rate decay  
+
+### Hyperparameters tuning in practice : Pandas vs. Caviar  
+
+![image](https://user-images.githubusercontent.com/32921115/103517033-d46e2480-4eb4-11eb-9095-ead4eac30684.png)  
+
+## 2) Batch Normalization  
+  
+![image](https://user-images.githubusercontent.com/32921115/103518979-0c2a9b80-4eb8-11eb-9299-f68b3f6823f4.png)
+
+- **Mini Batch의 평균과 분산**을 이용해서 Normalization 한 뒤, Scale 및 shift 를 감마(γ) 값, 베타(β) 값을 통해 실행. (감마와 베타는 실행 가능한 변수), **Backpropagation**을 통해 Learning 됨.  
+
