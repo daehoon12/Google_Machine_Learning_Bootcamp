@@ -180,8 +180,22 @@ ex) 알파0이 0.2일 때
 ![image](https://user-images.githubusercontent.com/32921115/103517033-d46e2480-4eb4-11eb-9095-ead4eac30684.png)  
 
 ## 2) Batch Normalization  
-  
+ 
+### Batch Normalization  
 ![image](https://user-images.githubusercontent.com/32921115/103518979-0c2a9b80-4eb8-11eb-9299-f68b3f6823f4.png)
 
 - **Mini Batch의 평균과 분산**을 이용해서 Normalization 한 뒤, Scale 및 shift 를 감마(γ) 값, 베타(β) 값을 통해 실행. (감마와 베타는 실행 가능한 변수), **Backpropagation**을 통해 Learning 됨.  
+- 기존 output = g(Z), Z = WX + b 식은 output = g(BN(Z)), Z = WX + b, 즉 기존 **Activation Function의 Input에 Batch Normalization**을 적용한다.  
+- 입실론 값은 계산할 때 0으로 나눠지는 문제가 발생하는 것을 막기위한 값, 감마는 Scale 값, 베타는 Shift transform에 대한 값이다. 이들은 **데이터를 계속 Normalization을 할 때, Activation이 Non-linear한 성질을 잃게 되는 것을 막아준다.**  
+- 감마와 베타도 learning 값이므로, **Optimizer 기법 사용이 가능하다.**  
 
+### Why does Batch Norm work?  
+### 1) Covariate Shift 방지  
+
+![image](https://user-images.githubusercontent.com/32921115/103521312-e0111980-4ebb-11eb-8be9-acc7734b915e.png)
+
+- Covariate Shift : 이전 Layer의 파라미터 변화로 인해 현재 **Layer의 분포가 바뀌는 현상**  
+- **Data의 분포가 바뀌면?** -> 우리가 찾아야하는 분포를 제대로 찾기 어려워짐.  
+### 2) Gradient Vanishing/ Exploding 방지  
+- Gradient라는 것이 결국 미분값 변량을 의미하는데 이 값이 매우 Vanishing or Exploding 해지면 Network를 효과적으로 Learning하지 못함.  
+- Batch Normalization은 학습하는 과정 자체를 전체적으로 안정화"하여 학습 속도를 가속 시킬 수 있는 근본적인 방법  
