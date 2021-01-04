@@ -216,6 +216,6 @@ ex) 알파0이 0.2일 때
 
 - **Categorical Cross-Entropy Loss 사용**  
 
-### Example  
+### Cross Entropy Example  
 
 ![image](https://user-images.githubusercontent.com/32921115/103523464-3a5fa980-4ebf-11eb-9a32-8426eb6bcbb5.png)
