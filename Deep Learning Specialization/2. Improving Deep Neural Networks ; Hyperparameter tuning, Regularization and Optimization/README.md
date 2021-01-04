@@ -201,9 +201,21 @@ ex) 알파0이 0.2일 때
 - Batch Normalization은 학습하는 과정 자체를 전체적으로 안정화"하여 학습 속도를 가속 시킬 수 있는 근본적인 방법  
 
 ## 3) Multi-class classfication  
-### Softmax Regression  
+
+![image](https://user-images.githubusercontent.com/32921115/103522203-60844a00-4ebd-11eb-97bc-7fc6f38c3fa3.png)  
+
 ### Softmax Function  
 
-![image](https://user-images.githubusercontent.com/32921115/103522203-60844a00-4ebd-11eb-97bc-7fc6f38c3fa3.png)
+![image](https://user-images.githubusercontent.com/32921115/103523146-cb825080-4ebe-11eb-9f2b-a8850c8b852d.png)
 
 - Neuron Network의 output layer에서 사용하는 Activation Function, **Output의 총 합이 1이며** **Multi-class classfication에서 사용**  
+
+### Loss Function  
+
+![image](https://user-images.githubusercontent.com/32921115/103523522-4f3c3d00-4ebf-11eb-9d47-809f5497f9c4.png)
+
+- **Categorical Cross-Entropy Loss 사용**  
+
+### Example  
+
+![image](https://user-images.githubusercontent.com/32921115/103523464-3a5fa980-4ebf-11eb-9a32-8426eb6bcbb5.png)
