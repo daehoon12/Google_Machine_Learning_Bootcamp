@@ -387,4 +387,5 @@ while gird box:
 - 나온 Output에서 중복 Detection된 결과들을 제거해야 함 (non-max supresseion)  
 - YOLO Algorithm 완성  
 
-- **현실적으로는 정교한 grid가 필요할 것 (19 x 19 x number of ahchor box x 8)**  
+
+**현실적으로는 정교한 grid가 필요할 것 (19 x 19 x number of ahchor box x 8)**  
