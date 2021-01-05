@@ -311,3 +311,54 @@ landmark detection을 위해서는 **모든 Training set에 대하여 좌표가 
 - 각 grid의 좌측 상단 (0,0), 우측 하단 (1,1)로 정의함.  
 - bh, bw는 1보다 커질 수 있다. -> 큰 Object가 여러 grid에 걸칠 경우  
 
+## Intersection over union  
+
+![image](https://user-images.githubusercontent.com/32921115/103641971-deb41f80-4f95-11eb-8e81-9e706cf73c2b.png)
+
+- Prediction과 Label 각각의 Bounding Box가 얼마나 유사한지 확인하는 기준  
+- IOU : **(보라색 ∩ 빨간색) / (보라색 ∪ 빨간색 - 보라색 ∩ 빨간색)**  
+- 일반적으로 0.5보다 크면 예측이 Correct한 것으로 판정, 좀 더 정확하게 할려면 더 큰 값으로 설정하면 된다.  
+
+## Non-max Suppression  
+
+![image](https://user-images.githubusercontent.com/32921115/103642565-a95c0180-4f96-11eb-85ed-7e7bdc0b3cca.png)
+
+- 가장 이상적인 Detection : 적절한 grid 내에 하나의 mid point가 있는 경우  
+- 그러면 **mid-point가 여러 개일 경우 어떤 grid의 mid point를 선택하야 할까?** -> **Non-Max Suppression**  
+
+![image](https://user-images.githubusercontent.com/32921115/103642714-ec1dd980-4f96-11eb-8234-ec48ea07b1d2.png)
+
+- 위의 Object에서 Pc값이 가장 큰 값을 선택하고 나머지는 버린다.  
+- output =[Pc, bx,by,bh,bw]  
+
+### Algorithm  
+1. CNN을 이용해 Output을 출력  
+2. Pc <= Threshold (여기서는 0.6) 이하의 grid box를 제거 
+while gird box:  
+3. 남아있는 박스 중에서 가장 큰 값을 가지는 grid 선택  
+4. grid의 box와 맨 처음 골랐던 box와의 IOU가 0.5 이상인 box는 모두 제거 (많이 겹치는 것 박스를 없애주기 위함)  
+
+**Object 당 1 개의 Bounding Box를 검출할 수 있다.** 
+
+## Anchor boxes  
+
+![image](https://user-images.githubusercontent.com/32921115/103644172-4d46ac80-4f99-11eb-83be-64a43dc51594.png)
+
+- 각 grid에서 여러개의 Object를 detect 하는 방법  
+- y는 anchor box의 수 * object 정보를 가지고 있음 (y = [Pc, bx, by, bh, bw, c1,c2,c3, Pc, bx, by, bh, bw, c1,c2,c3]  
+- Anchor box를 여러개 적용한 경우에서 각각의 Object는 midpoint를 포함하는 grid 중 **Anchor box들과 가장 큰 IOU를 가지는 grid에 Object가 할당**된다.  
+- 정사각형에 가깝지 않은 Object들을 잘 검출할 수 있음. 위의 예에서는 Car, Pedistian
+### Example  
+- Pedestian은 Anchor box1, Car는 Anchor box2에 더 가까움  
+- (3,2) grid에서 anchor box1, anchor box2에 대해 Detection한 결과를 보여줌.  
+- 만약 Pedestian은 없고 Car만 있다고 가정하면, Anchor Box2가 Anchor Box1보다 IOU가 높아 Anchor box1의 Pc는 0, 나머지 값은 ?로 바뀌고 Anchor box2의 정보만 저장이 된다.
+
+### 한계  
+1. **Anchor box 개수보다 많은 Object가 있을 경우** 다 검출하기 어려움  
+2. **같은 Anchor box에 해당하는 2개 이상의 Object**가 있으면 다 검출하기 어려움 
+
+## 선택하는 방법?  
+- 사이즈를 직접 정하는 방법  
+- K-means 알고리즘을 이용해 Object의 shape끼리 그룹화 뒤, 그룹에 알맞는 Anchor box를 사용  
+
+
