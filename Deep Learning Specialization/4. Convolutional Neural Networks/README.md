@@ -256,7 +256,32 @@ landmark detection을 위해서는 **모든 Training set에 대하여 좌표가 
 ![image](https://user-images.githubusercontent.com/32921115/103630966-c2a88200-4f85-11eb-8d28-7964693e4abf.png)
 
 - 왼쪽 이미지 상단부터 window size만큼 이미지를 Learning된 ConvNet에 Feed  
-- 
 - Computational Cost가 크다.  
 - 작은 stride, 작은 window size -> cost 증가  
 - 높은 stride, window size -> 성능 저하  
+
+## Convolutional Implementation of sliding windows  
+
+### Turning FC layer into convolutional layers  
+
+![image](https://user-images.githubusercontent.com/32921115/103638772-b544c500-4f90-11eb-971e-ff894639ffc6.png)
+
+- 기존의 vector 였던 FC를 convolutinal 하게 바꿈  
+- 5X5X16을 vector로 변환 x fully connected 개수 (400x400), 5X5X16 volume에 1x1x16인 filter 400개 convolution  (5x5x16x400) -> 둘다 같다.  
+
+### Convolution implementation of sliding windows  
+
+![image](https://user-images.githubusercontent.com/32921115/103638912-e7562700-4f90-11eb-8317-79e207162fc4.png)
+
+- 14x14x3 train image를 16x16x3 test image에 적용, stride=2로 적용하면 2x2x4의 output을 얻음.  
+
+![image](https://user-images.githubusercontent.com/32921115/103639148-45830a00-4f91-11eb-8a26-9b80121e1c46.png)
+
+- 16x16x3 image에서 4번의 sliding window를 가지게 되어 4개의 label을 갖게 됨.  
+
+![image](https://user-images.githubusercontent.com/32921115/103639281-78c59900-4f91-11eb-9984-b9c80a03cfed.png)
+
+- test image = 28 x 28 x 3, window size = 14 x 14 x 3  
+- 왼쪽 상단부터 오른쪽 하단까지 sliding window를 통하여 탐색  
+- 이 때 window에 맞게 object가 있으면 Neural Network를 이용해 Detection  
+
