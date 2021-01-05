@@ -181,3 +181,16 @@
 - 이때 1x1 convolution 사용. 
 - 28x28x192의 값이 filter를 거쳐 28x28x32로 변함. width, height는 유지되고 volume은 축소됨.  
 - 똑같이 channel을 줄일 수 있는 **padding ='same', stride = 1, filter 3x3**과의 차이는 Network의 연산량에서 차이가 난다.  
+
+## Inception Network  
+
+### Inception Module  
+
+![image](https://user-images.githubusercontent.com/32921115/103621338-65f29a80-4f78-11eb-895a-4cd95551769f.png)
+
+- 3x3, 5x5 filter를 통과하기 전 1x1 filter를 통과하여 channel의 수를 줄여 연산량을 줄임  
+- output은 마지막 layer의 채널의 개수의 합 (64 + 128 + 32 +32)  
+
+### GoogleNet  
+
+![image](https://user-images.githubusercontent.com/32921115/103621530-b2d67100-4f78-11eb-9b84-828f5be57918.png)
