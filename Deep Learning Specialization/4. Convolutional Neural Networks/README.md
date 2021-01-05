@@ -285,3 +285,29 @@ landmark detection을 위해서는 **모든 Training set에 대하여 좌표가 
 - 왼쪽 상단부터 오른쪽 하단까지 sliding window를 통하여 탐색  
 - 이 때 window에 맞게 object가 있으면 Neural Network를 이용해 Detection  
 
+## Bounding Box Predictions  
+
+![image](https://user-images.githubusercontent.com/32921115/103640314-21c0c380-4f93-11eb-9ba7-269e84371f04.png)
+
+- 위의 사진처럼 정확히 일치하는 box가 없어 Detection을 못하는 경우 좀 더 정확하게 할수 있는 방법이 있을까?  
+- **YOLO Algorithm**  
+
+### YOLO Algorithm  
+
+![image](https://user-images.githubusercontent.com/32921115/103641131-99432280-4f94-11eb-898a-15bd8cd22e0d.png)
+
+- 100 x 100 input image가 있다고 가정, 위에서는 3 x 3 grid를 사용하나, 실제는 더 정교한 grid를 사용함.  
+- 각각의 grid에서 Object가 없는 보라색은 Pc = 0, 있는 나머지 색깔은 Pc =1  
+- 위의 3x3 grid를 이용한 YOLO 알고리즘을 기준으로 3 x 3 x 8 output volume가 필요, Y가 8개의 원소를 가지기 때문.  
+- 위의 예제에서 X는 100 x 100 x 3의 Image. input을 **ConvNet을 이용해 처리**하고 마지막 output을 grid와 똑같은 size인 3 x 3 x 8을 갖도록 Network를 구성해 Training 해야함. (실제는 19 x 19 x 8과 같이 만드는 것이 좋음)  
+- grid의 개수가 많아질 수록 한 개의 grid에서 여러개의 object가 검출될 확률이 줄어든다.  
+- Input 하나를 ConvNet에 적용하고 출력을 grid로 나누어 한번에 Object에 대한 Classification 과 Localization을 함 -> **처리 속도가 빨라서 real time object**에 적용 가능  
+
+### Specify the bounding boxes  
+
+![image](https://user-images.githubusercontent.com/32921115/103641471-24bcb380-4f95-11eb-9104-5462dcc5dd32.png)
+
+- grid 내의 midpoint를 기준으로 height와 width로 그려짐  
+- 각 grid의 좌측 상단 (0,0), 우측 하단 (1,1)로 정의함.  
+- bh, bw는 1보다 커질 수 있다. -> 큰 Object가 여러 grid에 걸칠 경우  
+
