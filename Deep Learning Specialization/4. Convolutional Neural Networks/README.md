@@ -194,3 +194,69 @@
 ### GoogleNet  
 
 ![image](https://user-images.githubusercontent.com/32921115/103621530-b2d67100-4f78-11eb-9b84-828f5be57918.png)
+
+
+## 3. Object Detection  
+
+## Object Localization  
+
+### What are localization and detection?  
+- Image Classification : 특정 Algorithm을 이용해 Classfication 하는 것. Car라고 정답을 출력  
+- Classfication with localization : Image Classification + bounding box Object 표시 -> Car라고 예측 + car의 위치까지 표시  
+- Detection : Multiple Object를 Classfication 및 Localization  
+
+### Classfication with localization  
+
+![image](https://user-images.githubusercontent.com/32921115/103628324-2f218200-4f82-11eb-9b19-7416e2797d4c.png)
+
+- Classfication Problem : Image를 Multiple-layer ConvNet에 Feed하고 마지막 Layer에서 softmax 함수 적용후 output vector를 통해 prediction 가능  
+- bx, by, bh, bw는 위의 이미지에서 빨간색 Bounding box를 나타냄. (by, bx)는 bounding box의 중점, bh, bw는 각각 높이와 너비  
+- bounding box 좌표 4개를 받고 **Supervised Learning 알고리즘을 통해 Classfication과 Localization** 수행 가능  
+- 위의 예에서 Car의 bounding box는 (bx, by, bh, bw) = (0.5, 0.7, 0.3, 0.4). by는 y축의 좌표가 아래쪽에 있으므로 0.5보다 큰 값  
+
+### Defining the target label y  
+
+![image](https://user-images.githubusercontent.com/32921115/103628258-16b16780-4f82-11eb-89f9-3a9d1054e734.png)
+
+- target label y = [Pc, bx, by, bh, bw, c1, c2, c3]  
+- Pc (Probability of Class) : Class가 Object인가 아닌가? **Pc =1 -> Object 존재, Pc = 0 -> Object는 Background**  
+- bx, by, bh, bw : Bounding Box의 좌표  
+- c1,c2,c3 : 각 Class (위의 예에서는 Pedstrian, car, motorcycle)  
+- 위의 예에서 왼쪽 사진은 Car를 분류해서 c2=1이고, 오른쪽 사진은 Pc=0이므로 나머지 요소들이 다 ? 이다.  
+- Loss Function은 Squared Error 사용 (Cross Entropy도 가능), Pc = 1일 때는 모든 Y의 원소에 대해 squared Error를 구하고, 0일 때는 Pc값 즉 y1 원소에 대해서만 구한다.  
+
+## Landmark Detection  
+- Landmark : Image 내의 중요 부분이라 판단되는 좌표 Y  
+
+### Example  
+
+![image](https://user-images.githubusercontent.com/32921115/103629775-1619d080-4f84-11eb-8062-5c47c60e839f.png)
+
+- 사람 얼굴이 ConvNet을 거쳐 129개의 output unit을 가짐 (1개는 face or not, 나머지는 128개는 landmark 좌표)  
+- landmark의 개수는 지정해줘야 한다.  
+- Train set에 Landmark 정보가 있어야 한다.  
+- Pose Detection에서는 Key Position을 Landmark로 잡아서 구함. (위의 예에서는 어깨 팔꿈치 등)  
+
+landmark detection을 위해서는 **모든 Training set에 대하여 좌표가 일관성 있게 준비**되어야 한다.  
+예를 들어 1번 training image에 1번 좌표가 사람 왼쪽 눈의 왼쪽 코너라고 하면 2번 image의 1번 좌표 또한 왼쪽 눈의 왼쪽 코너여야 한다.  
+
+## Object Detection  
+
+### Car detection example  
+
+![image](https://user-images.githubusercontent.com/32921115/103630609-431ab300-4f85-11eb-8bbb-357c8e98d2ad.png)
+
+- x = 정답인 자동차만 crop한 이미지  
+- y = 이미지가 자동차인지 아닌지에 대한 값  
+- Object는 이미지 중앙에 위치 and 이미지 전체를 차지  
+- Car (1) or not (0)  
+
+### Sliding windows etection  
+
+![image](https://user-images.githubusercontent.com/32921115/103630966-c2a88200-4f85-11eb-8d28-7964693e4abf.png)
+
+- 왼쪽 이미지 상단부터 window size만큼 이미지를 Learning된 ConvNet에 Feed  
+- 
+- Computational Cost가 크다.  
+- 작은 stride, 작은 window size -> cost 증가  
+- 높은 stride, window size -> 성능 저하  
