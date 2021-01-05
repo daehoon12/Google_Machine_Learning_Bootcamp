@@ -167,7 +167,17 @@
 
 **Residual block의 input과 output의 Dimension은 같아야 한다.**  
 
+## Network in Newtork and 1x1 Convolutions  
 
+![image](https://user-images.githubusercontent.com/32921115/103617326-6b98b200-4f71-11eb-8a64-5befeb359f6f.png)
 
+- non-liearity 성질(Relu)을 더하면서 output의 volume을 증가/유지/감소 할 수 있음. 
 
+### Using 1x1 Convolutions  
 
+![image](https://user-images.githubusercontent.com/32921115/103617286-5a4fa580-4f71-11eb-83c2-7ae381bb22a7.png)
+
+- height와 width를 줄이려면 pooling layer를 사용, 그러면 channel을 줄이고 싶으면?  
+- 이때 1x1 convolution 사용. 
+- 28x28x192의 값이 filter를 거쳐 28x28x32로 변함. width, height는 유지되고 volume은 축소됨.  
+- 똑같이 channel을 줄일 수 있는 **padding ='same', stride = 1, filter 3x3**과의 차이는 Network의 연산량에서 차이가 난다.  
