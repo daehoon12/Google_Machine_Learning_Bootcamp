@@ -349,6 +349,9 @@ while gird box:
 - Anchor box를 여러개 적용한 경우에서 각각의 Object는 midpoint를 포함하는 grid 중 **Anchor box들과 가장 큰 IOU를 가지는 grid에 Object가 할당**된다.  
 - 정사각형에 가깝지 않은 Object들을 잘 검출할 수 있음. 위의 예에서는 Car, Pedistian
 ### Example  
+
+![image](https://user-images.githubusercontent.com/32921115/103645579-939d0b00-4f9b-11eb-8753-93ae13e1b39e.png)
+
 - Pedestian은 Anchor box1, Car는 Anchor box2에 더 가까움  
 - (3,2) grid에서 anchor box1, anchor box2에 대해 Detection한 결과를 보여줌.  
 - 만약 Pedestian은 없고 Car만 있다고 가정하면, Anchor Box2가 Anchor Box1보다 IOU가 높아 Anchor box1의 Pc는 0, 나머지 값은 ?로 바뀌고 Anchor box2의 정보만 저장이 된다.
@@ -361,4 +364,27 @@ while gird box:
 - 사이즈를 직접 정하는 방법  
 - K-means 알고리즘을 이용해 Object의 shape끼리 그룹화 뒤, 그룹에 알맞는 Anchor box를 사용  
 
+## YOLO Algorithm  
 
+### Training set 구성  
+
+![image](https://user-images.githubusercontent.com/32921115/103645729-da8b0080-4f9b-11eb-8197-54ead45a92a1.png)
+
+- 3 x 3 grid 사용, 2개의 anchor box 사용, 3개의 class  
+- 위에서 3 x 3은 grid, 2는 anchor box 개수, 8은 Pc + bounding 좌표 + class 개수  
+- 왼쪽 상단에는 Object가 없어 Pc 값이 0이고 나머지 원소들이 다 ?로 되있음  
+- (3,2) grid에는 자동차를 감지하고, **anchor box2의 IOU가 더 높아** 아래의 원소에만 값이 들어가고 anchor box1에 해당되는 원소는 0과 ?가 되었다.  
+- output vector를 이용하여 Detection 할 시 3x3x16으로 나타내고 비교한다.  
+
+### Making Predictions  
+
+![image](https://user-images.githubusercontent.com/32921115/103646432-01960200-4f9d-11eb-8196-b0f4d22aa943.png)
+
+### Outputting the non-max supressed outputs  
+
+![image](https://user-images.githubusercontent.com/32921115/103646470-12467800-4f9d-11eb-817b-e59c2158fbe7.png)
+
+- 나온 Output에서 중복 Detection된 결과들을 제거해야 함 (non-max supresseion)  
+- YOLO Algorithm 완성  
+
+- **현실적으로는 정교한 grid가 필요할 것 (19 x 19 x number of ahchor box x 8)**  
