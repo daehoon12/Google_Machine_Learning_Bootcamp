@@ -389,3 +389,79 @@ while gird box:
 
 
 **현실적으로는 정교한 grid가 필요할 것 (19 x 19 x number of ahchor box x 8)**  
+
+## 4. Face Recognition  
+
+## Face Verification vs. Face Recognition  
+- Face Verification : Image, name or ID를 Input으로 주고 Output으로 input의 정보에 해당하는 사람이 맞는지 확인  
+- Face Recognition : K명의 사람을 비교함. ex) 100명의 사람의 DB에서 특정 사람을 찾으려면 Verification 100번 수행 -> (99.9)^100 -> 약 90%로 정확도가 줄어든다.  
+
+## One Shot Learning  
+- One-Shot Learning : 한 사람의 사진을 이용해 그 사람을 Recognition하도록 Learning 해야 한다.  
+
+### Example  
+- 4개의 사람 Image DB를 가지고 있고 Image 하나를 받아 CNN을 거친 후 Output에 softmax를 취한다 가정.  
+- Output은 person1,2,3,4 그리고 None 총 5개  
+
+But 여기서는 2가지 한계가 있음  
+1. Image data가 너무 적어 learning이 잘 안됨.  
+2. 새로운 사람이 추가되면 다시 learning 해야 한다.  
+
+### Learning a similarity fucntion  
+- Image의 difference를 구함.  
+- d(img1, img2)에서 같은 사람이면 output은 작을 것이고, 다른 사람이면 output의 값은 클 것이다.  
+- 3가지 기능을 지원해야 한다.  
+  1. 가장 유사한 이미지 찾기.  
+  2. 기존 DB에 없는 이미지는 없다고 판별  
+  3. 새로운 이미지 등록  
+  
+## Siamese Network  
+- DeepFace 논문에 나오는 내용  
+- similarity function d를 만들기 위한 방법  
+
+### Example  
+
+![image](https://user-images.githubusercontent.com/32921115/103856891-c4468700-50f8-11eb-9ee9-f4c2572d3c5e.png)
+
+- input Image x(1)ConvNet에 Feed 하고 결과물로 Output Vector를 받는다고 가정. (Softmax Layer가 없음)  
+- x(2)도 위와 같은 방법 사용  
+- 이후 결과 값에 norm을 적용한다. 값이 작으면 같은 사람, 값이 크면 다른 사람이다.  
+
+![image](https://user-images.githubusercontent.com/32921115/103857070-1e474c80-50f9-11eb-856f-ece86416a68a.png)
+
+**즉 같은 사람일 때는 norm의 결과가 작아야 하고, 다른 사람일 때는 norm의 결과가 크도록 만들어야 한다!**  
+
+## Triplet Loss  
+- Siamese Network에 사용되는 Loss Fucntion  
+
+### Example  
+
+![image](https://user-images.githubusercontent.com/32921115/103857968-d45f6600-50fa-11eb-9c4f-65019c61b643.png)
+
+- 우리가 원하는 결과물은 d(A,P) <= d(A,N)  
+- 만약 f(x)의 결과가 항상 0이어도, 부등식은 만족하므로 parameter를 이상하게 learning할 수 있음.  
+- 그래서 알파라는 **최소한의 gap**를 더하고, 이를 **margin**이라고 한다. (알파는 hyperparameter)  
+
+![image](https://user-images.githubusercontent.com/32921115/103858210-4df75400-50fb-11eb-95c4-8d0bde0b13d2.png)
+
+- 즉 L(A,P,N)은 위와 같은 식이 되고, prediction과 정답 label이 가까울 수록 loss는 0에 가까워짐. (우리가 원하는 건 **D(A,P) - D(A,N) + alpha <= 0**)  
+- A, P, N의 데이터 셋을 구성하기 위해서 먼저 A, P를 먼저 짝을 지어야 한다. 평균적으로 1명당 10개의 사진으로 learning해야 함.  
+- Learning을 끝내면, 한 장의 사진만 있으면 Face Recognition이 가능함.  
+- A,P는 동일한 사람을 쌍으로 만든다 해도, N을 램덤하게 구성하면 Loss가 항상 0이 나와 Learning이 잘 안될수 있다. (A,P : 백인 남자 아이와, N:흑인 여자 할머니)  
+
+![image](https://user-images.githubusercontent.com/32921115/103858946-92372400-50fc-11eb-8c79-c4447ad0b68d.png)
+
+- Training set은 **anchor, positive, negative**를 구성해야 한다.  
+- Pre-trained 모델을 구하는 것도 좋은 방법.  
+
+## Face verification and binary classfication  
+
+![image](https://user-images.githubusercontent.com/32921115/103860540-24402c00-50ff-11eb-8d14-06dda0e53cbf.png)
+
+- Triplet Loss + Siamese Network를 이용하여 **같다 =1, 다르다 =0인 binary classfication 문제**로 바꿀 수 있다.  
+- 위 2개의 이미지 중 위의 것을 판별해야 할 이미지라 하고 아래 것을 기존의 db에 있는 이미지라고 가정  
+- 기존에 있는 이미지는 굳이 ConvNet에 Feed할 필요가 없음. **Computation Cost를 줄여준다.**  
+
+![image](https://user-images.githubusercontent.com/32921115/103860700-72552f80-50ff-11eb-99fe-b0f903e50f1c.png)
+
+- 이런 식으로 Face Verification이 가능하다.  
