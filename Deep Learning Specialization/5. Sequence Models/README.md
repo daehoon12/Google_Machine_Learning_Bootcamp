@@ -173,4 +173,46 @@ y^ : 예측 값
 - Face encoding과 유사하지만 word embedding 경우에는 사용자의 **단어가 정해져 있기 때문에 voca에 존재하지 않는 단어는 learning 할 수 없다.**  
 
 
+## Properities of word embeddings  
+- Word Embedding은 **유추(Analogy)하는 문제**에 큰 도움을 줌  
 
+### Analogy  
+
+![image](https://user-images.githubusercontent.com/32921115/103993495-0d6e0800-51d9-11eb-9dd4-9e01f433af6b.png)
+
+- 'Man과 Woman은 King과 ____ 과 같다' 라는 유추 문제가 있을 때, 어떻게 예측할까?  
+- Man은 4차원 Vector로 표시, e(5391) = e(man), Woman도 마찬가지로 e(woman)으로 표현된다.  
+
+![image](https://user-images.githubusercontent.com/32921115/103993538-1a8af700-51d9-11eb-9161-95bbb2b2a53a.png)  
+
+- 위의 결과에 의해서 우리는 man과 woman의 관계가 king과 queen의 관계와 유사하다고 추론할 수 있다.  
+
+![image](https://user-images.githubusercontent.com/32921115/103993843-8c634080-51d9-11eb-8e1f-7de9e2f6a2b6.png)
+
+- Word Embedding은 약 300D의 공간에서 표현될 것이고, 그 공간 안에서 각 단어들은 점으로 표현이 된다.  
+- 위 그림처럼 값이 비슷한 두 차이 벡터는 매우 유사할 것이다. (300차원에서 그려진 벡터, 2차원 아님)  
+- **Sim은 Similarity Function**을 의미하며, 두 단어 사이의 Similarity를 계산한다. (실제 논문에선 30 ~75% Acc를 보여줌)  
+
+![image](https://user-images.githubusercontent.com/32921115/103994109-e3691580-51d9-11eb-8066-e7d1af7ebd70.png)
+
+- t-SNE 알고리즘은 300D를 2D로 매핑해주는데, 매우 복잡하고 non-linear한 매핑이다. **즉 임베딩을 통해 단어간의 analogy를 구할 때, 원레 벡터의 Dimension인 300D를 통해 비교 해야한다.**  
+
+### Cosine Similarity  
+
+![image](https://user-images.githubusercontent.com/32921115/103994337-3773fa00-51da-11eb-9554-1f34795e16b4.png)
+
+- 일반적인 Simiairty Function으로 가장 많이 사용  
+- **벡터가 수직이면 두 벡터간의 유사도는 0**  
+
+## Embedding Matrix  
+- Word Embedding을 통해 learning 됨.  
+- 만약 1만개의 단어를 사용하고 feature로 300개를 사용하면 (300, 10000)의 Matrix를 가짐.  
+- Orange를 예로 들면 6257 column에 있으며, orange에 해당하는 embedding vector가 됨.  
+- one-hot encoding을 통한 o(6257)과 내적을 수행하면 우리가 원하는 embedding vector를 구할 수 있음.  
+
+#### 공식  
+
+![image](https://user-images.githubusercontent.com/32921115/103994829-e57fa400-51da-11eb-9be3-5e89f05f027a.png)
+
+- **우리가 학습해야되는 것이 Embedding Matrix E라는 것이 가장 중요, E는 초기에 무작위로 초기화 된다.**  
+- one-hot vector 곱은 **매우 비효율적**, one-hot vector가 꽤 큰 차원인데다가 대부분 0으로 채워져 있어 메모리 낭비도 심하고 compute 양도 많음. 실제로는 **Embedding vector를 얻는 특화된 함수를 사용함**  
