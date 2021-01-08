@@ -61,3 +61,26 @@ y^ : 예측 값
 ### Cell State  
 - 어떤 정보를 잊고 기억할 지에 관한 판단이 반영된 정보  
 - forget, input, output gate로 구성  
+
+### Forget Gate  
+
+![image](https://user-images.githubusercontent.com/32921115/103977886-8d867480-51bd-11eb-80c6-68d465a13238.png)
+
+- 현재 time-step t의 입력값 x_t와 이전 Hidden state h_(t-1)을 고려해, **이전 Cell State를 얼마나 보존할 지 판단한다.**  
+
+### Input Gate  
+
+![image](https://user-images.githubusercontent.com/32921115/103978015-d9391e00-51bd-11eb-8156-17e831c65868.png)
+
+- 현재 time-step t의 input x_t와 이전 Hidden State h_(t-1)를 고려해, **Cell State에 현재 State에 대한 값을 얼마나 더할지 판단한다.**  
+
+### Cell State Updadte  
+
+![image](https://user-images.githubusercontent.com/32921115/103978133-1ef5e680-51be-11eb-812c-e0bc1f1817e8.png)
+
+### Output Gate  
+
+![image](https://user-images.githubusercontent.com/32921115/103978293-87dd5e80-51be-11eb-8706-c67b2ba1e95b.png)
+
+- 업데이트된 Cell State와와 x_t 와 h_(t-1) 을 고려해 Hidden State 업데이트하고, 다음 time-step t+1 로 전달  
+
