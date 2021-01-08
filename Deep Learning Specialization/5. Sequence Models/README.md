@@ -96,8 +96,24 @@ y^ : 예측 값
 ![image](https://user-images.githubusercontent.com/32921115/103979106-52397500-51c0-11eb-97bd-57e02ece83f9.png)
 
 - 이전 히든 스테이트 h_(t-1)과 현재 입력 값 x_t를 고려해, **현재 입력 값을 히든 스테이트 h_t에 얼마나 반영**할 지 판단  
+
 ### Update Gate  
 
 ![image](https://user-images.githubusercontent.com/32921115/103979118-5bc2dd00-51c0-11eb-9332-fbd37f92bf7a.png)
 
 - 히든 스테이트 h_(t-1)과 현재 입력 값 x_t로부터 z_t값을 생성하고 z_t를 기준으로 **리셋 게이트로부터 반환된 값과 이전 히든 스테이트 중 어디에 얼만큼 가중치를 둘 지 판단**  
+
+## Bidirectional RNNs  
+
+![image](https://user-images.githubusercontent.com/32921115/103982563-11912a00-51c7-11eb-8609-e45292c3d514.png)
+
+- 기존 RNN은 이전 timestep의 정보를 이용해 현재의 label을 예측하는 방식  
+- **미래 시점에서 현재 시점으로도** 고려해서 처리할 수 있음.  
+- 많은 Text가 있는 경우 LSTM을 이용한 Bidirectional RNN을 사용한다.  
+- Parameter수는 기존 RNN 수의 2배  
+
+## Deep RNNs  
+
+![image](https://user-images.githubusercontent.com/32921115/103982595-1f46af80-51c7-11eb-8298-156cbfaaa0bc.png)
+
+- 기존 RNN의 위에 layer를 하나 더 쌓음.  
