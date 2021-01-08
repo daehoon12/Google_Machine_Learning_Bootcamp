@@ -84,3 +84,19 @@ y^ : 예측 값
 
 - 업데이트된 Cell State와와 x_t 와 h_(t-1) 을 고려해 Hidden State 업데이트하고, 다음 time-step t+1 로 전달  
 - [] 의미는 벡터를 쌓아놓은 걸로 생각하면 된다.  
+
+## Gated recurrent unit (GRU)  
+
+![image](https://user-images.githubusercontent.com/32921115/103979042-3504a680-51c0-11eb-9c17-4214f61dcca8.png)
+
+- LSTM보다 간소화, 별도의 Cell State 없이 2개의 Gate만 사용  
+
+### Reset Gate  
+
+![image](https://user-images.githubusercontent.com/32921115/103979106-52397500-51c0-11eb-97bd-57e02ece83f9.png)
+
+### Update Gate  
+
+![image](https://user-images.githubusercontent.com/32921115/103979118-5bc2dd00-51c0-11eb-9332-fbd37f92bf7a.png)
+
+
