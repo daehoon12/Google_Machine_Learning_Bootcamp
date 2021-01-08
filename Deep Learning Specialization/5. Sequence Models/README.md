@@ -236,8 +236,25 @@ y^ : 예측 값
 - 
 
 ## Word2Vec  
-- Embedding의 한 종류 (Word Embedding), **단어의 유사도를 측정**하기 위해 word를 Vector로 바꾸어주는 Algorithm, 
+- Embedding의 한 종류 (Word Embedding), **단어 간 유사도를 반영할 수 있도록**하기 위해단어 간 유사도를 반영할 수 있도록 word를 Vector로 바꾸어주는 Algorithm.  
 
+### Skip-gram  
+- 중심이 되는 단어를 무작위로 선택하고 주변 단어를 예측.  
+- 중심 단어가 Context(input)이 되고 주변 단어를 선택해서 Target(prediction)이 되도록 하는 **superivised learning**  
+- 주변 단어는 여러 개를 선택할 수 있다.  
 
+![image](https://user-images.githubusercontent.com/32921115/104000715-013a7880-51e2-11eb-8058-02f2665e0db8.png)
 
-![image](https://user-images.githubusercontent.com/32921115/103997623-b1a67d80-51de-11eb-81bb-10c166175fa6.png)
+### 과정  
+1. Orange라는 Context를 input으로 넣는다.  
+2. Orange의 One-hot Vector와 Embedding Matrix E를 dot-Product  
+3. Output Embedding Vector를 Softmax Layer에 넣는다.  
+4. Output y^을 얻는다.  
+
+### Softmax Fucntion and Loss Fucntion  
+
+![image](https://user-images.githubusercontent.com/32921115/104000939-4a8ac800-51e2-11eb-836e-266b9f7355a3.png)
+
+![image](https://user-images.githubusercontent.com/32921115/104000965-54143000-51e2-11eb-8241-c38f508d7e49.png)
+
+## Negative Sampling  
