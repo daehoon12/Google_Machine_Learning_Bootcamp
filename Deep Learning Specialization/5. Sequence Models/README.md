@@ -95,8 +95,9 @@ y^ : 예측 값
 
 ![image](https://user-images.githubusercontent.com/32921115/103979106-52397500-51c0-11eb-97bd-57e02ece83f9.png)
 
+- 이전 히든 스테이트 h_(t-1)과 현재 입력 값 x_t를 고려해, **현재 입력 값을 히든 스테이트 h_t에 얼마나 반영**할 지 판단  
 ### Update Gate  
 
 ![image](https://user-images.githubusercontent.com/32921115/103979118-5bc2dd00-51c0-11eb-9332-fbd37f92bf7a.png)
 
-
+- 히든 스테이트 h_(t-1)과 현재 입력 값 x_t로부터 z_t값을 생성하고 z_t를 기준으로 **리셋 게이트로부터 반환된 값과 이전 히든 스테이트 중 어디에 얼만큼 가중치를 둘 지 판단**  
