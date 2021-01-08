@@ -89,7 +89,12 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/103528196-e062e200-4ec6-11eb-9f53-c324786ce753.png)
 
-- 위의 아키텍처를 다 이해할 것.  
+- 위의 아키텍처를 다 이해할 것.
+
+## Why Convolutions?  
+- Parameter sharing : 각 neuron에 대한 Weight를 따로 배울 필요가 없다. (무조건 fillter의 수로만 곱해지니…) -> **계산 속도와 parameter의 수를 줄여줌!**    
+- Sparsity of connections : 각 Layer에서의 output은 적은 수의 input 값에 의존. (하나의 neuron을 learning 하는데에 모든 image 데이터를 넣는 것이 아니라, 일부분만 가져와 learning) -> **Overfitting을 방지하고, Neuron의 weight가 너무 커지는 것을 방지!**   
+
 
 ## 2. Deep convolutional models: case studies  
 
