@@ -128,4 +128,49 @@ y^ : 예측 값
 
 - 표현하고자 하는 단어의 index만 1, 나머지는 0  
 - **V의 개수가 늘어나면 vector의 dimension이 늘어난다**는 단점이 있다.  
-- **각 단어를 하나의 Object로 여기기 때문에 단어 간의 관계를 추론할 수 없다.** (I want a glass of orange ____ 를 통해서 빈칸에 juice가 들어가도록 학습했다고 하더라고, I want a glass of apple ____ 이라는 입력이 들어왔을 때, apple을 orange와 비교해서 비슷하다고 여겨서 juice를 추론할 수가 없음.
+- **각 단어를 하나의 Object로 여기기 때문에 단어 간의 관계를 추론할 수 없다.** (I want a glass of orange ____ 를 통해서 빈칸에 juice가 들어가도록 학습했다고 하더라고, I want a glass of apple ____ 이라는 입력이 들어왔을 때, apple을 orange와 비교해서 비슷하다고 여겨서 juice를 추론할 수가 없음.)  
+
+### Featurized Representation : Word Embedding  
+- Word를 사용자가 지정한 size만큼 숫자로 된 vector로 만듬.  
+
+![image](https://user-images.githubusercontent.com/32921115/103986649-79973e80-51ce-11eb-9436-268cf030d4f7.png)
+
+- row : feature  
+- cal : V에 있는 단어들.  
+- 위에 Man이라는 단어를 보면 Gender에 해당하는 값이 -1이고, woman은 1이다. **서로 반대되는 개념이기 때문에 두 합이 0에 가까움.**  
+- Apple이나 Orange는 Gender에 관련이 없기 때문에 두 값이 0에 가까운 것을 확인할 수 있다.  
+- 이렇게 Word Embedding을 통해 Embedding Matrix를 얻을 수 있음.  
+- Word Matrix의 값을 통해 "I want a glass of apple ____" 다음에 나올 word는 juice라는 것을 더 쉽게 예측할 수 있다.  
+
+### Visualizing word embeddings  
+
+![image](https://user-images.githubusercontent.com/32921115/103987037-25d92500-51cf-11eb-945d-467d6292ec06.png)
+
+- 300 dimension의 word embedding 행렬을 조금 더 쉽게 이해하기 위해 시각화.  
+- **t-SNE 알고리즘** : 임베딩 행렬을 더 낮은 차원으로 (위의 그림에서는 300D -> 2D)로 mapping해서 단어들을 시각화, 유사한 단어들은 서로 가까이에 있는 것을 확일할 수 있다.  
+
+## Using word embeddings  
+
+![image](https://user-images.githubusercontent.com/32921115/103987137-4e611f00-51cf-11eb-9717-e41fcfd0e53d.png)
+
+- 위의 사진은 이름을 인식하는 예제. Sally Johnson이 이름이라는 것을 확실히 알기 위한 방법은 orange farmer가 사람인 것을 알아내는 것이다.  
+- one-hot encoding이 아닌 word embedding을 사용해 학습한 뒤, 새로운 example에 대해서 apple이 orange와 유사하다는 것을 알기 때문에 Robert Lin이라는 사람 이름인 것을 더 쉽게 예측 가능.  
+- 생소한 단어인 durian cultivator라는 단어가 나와도 durian이 과일, cultivator가 사람을 나타내는 것을 learning하면 orange farmer처럼 normalization이 될 것이다. (값이 비슷하기 때문)  
+- Word Embedding이 이런 Normalization이 가능한 이유는 매우 큰 단어 뭉치들 (10억 ~ 100억개의 단어) Learning하기 때문이다. 
+
+### Transfer Learning and Word Embeddings  
+
+![image](https://user-images.githubusercontent.com/32921115/103988103-ddbb0200-51d0-11eb-8c8a-fe918edb14a8.png)
+
+- 적은 수의 training set을 가지고 있어도, transfer learning을 통해 미리 learning된 word embedding을 가지고 learning 할 수 있다.  
+1. text corpus로 word embedding을 학습  
+2. 기존 모델에 소규모 tranining set에 learning   
+3. 새로운 data로 word embedding을 계속 튜닝  
+
+
+![image](https://user-images.githubusercontent.com/32921115/103988125-e4e21000-51d0-11eb-90f1-fa79a30ef053.png)
+
+- Face encoding과 유사하지만 word embedding 경우에는 사용자의 **단어가 정해져 있기 때문에 voca에 존재하지 않는 단어는 learning 할 수 없다.**  
+
+
+
