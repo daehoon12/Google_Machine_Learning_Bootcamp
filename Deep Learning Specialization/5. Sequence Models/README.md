@@ -27,3 +27,4 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/103974917-2c0ed780-51b6-11eb-9cfe-d4d4fe439bc2.png)
 
+Ht : Hidden State, 이전 TimeStep의 정보  
