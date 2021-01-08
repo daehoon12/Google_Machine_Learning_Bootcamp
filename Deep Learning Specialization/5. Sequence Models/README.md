@@ -117,3 +117,15 @@ y^ : 예측 값
 ![image](https://user-images.githubusercontent.com/32921115/103982595-1f46af80-51c7-11eb-8298-156cbfaaa0bc.png)
 
 - 기존 RNN의 위에 layer를 하나 더 쌓음.  
+
+## 2. Natural Language Processing & Word Embeddings  
+
+## Word Representation  
+
+### One-hot Representation  
+
+![image](https://user-images.githubusercontent.com/32921115/103984790-21127200-51cb-11eb-99f8-4727c542d066.png)
+
+- 표현하고자 하는 단어의 index만 1, 나머지는 0  
+- **V의 개수가 늘어나면 vector의 dimension이 늘어난다**는 단점이 있다.  
+- **각 단어를 하나의 Object로 여기기 때문에 단어 간의 관계를 추론할 수 없다.** (I want a glass of orange ____ 를 통해서 빈칸에 juice가 들어가도록 학습했다고 하더라고, I want a glass of apple ____ 이라는 입력이 들어왔을 때, apple을 orange와 비교해서 비슷하다고 여겨서 juice를 추론할 수가 없음.
