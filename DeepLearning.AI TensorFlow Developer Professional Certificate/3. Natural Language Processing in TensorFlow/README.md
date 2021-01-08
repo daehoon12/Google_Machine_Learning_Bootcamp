@@ -10,7 +10,7 @@
 - Tokenizer.word_index : 단어와 숫자의 키-값 쌍을 포함하는 딕셔너리를 반환   
 - fit_on_texts(sentences) : 문자 데이터를 입력받아서 리스트의 형태로 변환  
 - texts_to_sequences(sentences) : sentences의 word들을 index로 변환해 저장  
-- pad_sequence() : data의 전처리를 담당. 제일 긴 데이터의 길이를 기준으로 padding 함. parameter에 따라 앞 or 뒤에 padding 가능.  
+- pad_sequence() : data의 전처리를 담당. 제일 긴 데이터의 길이를 기준으로 padding 함. parameter에 따라 앞 or 뒤에 padding 가능. defalute는 앞에서 부터 0으로 채움  
 
 ## Model  
 - keras.layers.Embedding(vocab_size, 16) : vocab_size는 사전의 크기, 두번째 parameter인 16은 생성되는 임베딩 벡터의 크기, **10,000개 의 단어에 대한 크기 16의 임베딩 벡터를 10,000개 만든다.**  
