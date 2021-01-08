@@ -83,4 +83,4 @@ y^ : 예측 값
 ![image](https://user-images.githubusercontent.com/32921115/103978293-87dd5e80-51be-11eb-8706-c67b2ba1e95b.png)
 
 - 업데이트된 Cell State와와 x_t 와 h_(t-1) 을 고려해 Hidden State 업데이트하고, 다음 time-step t+1 로 전달  
-
+- [] 의미는 벡터를 쌓아놓은 걸로 생각하면 된다.  
