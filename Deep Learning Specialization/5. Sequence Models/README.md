@@ -155,7 +155,7 @@ y^ : 예측 값
 
 - 위의 사진은 이름을 인식하는 예제. Sally Johnson이 이름이라는 것을 확실히 알기 위한 방법은 orange farmer가 사람인 것을 알아내는 것이다.  
 - one-hot encoding이 아닌 word embedding을 사용해 학습한 뒤, 새로운 example에 대해서 apple이 orange와 유사하다는 것을 알기 때문에 Robert Lin이라는 사람 이름인 것을 더 쉽게 예측 가능.  
-- 생소한 단어인 durian cultivator라는 단어가 나와도 durian이 과일, cultivator가 사람을 나타내는 것을 learning하면 orange farmer처럼 normalization이 될 것이다. (값이 비슷하기 때문)  
+- dataset에 없는 durian cultivator라는 단어가 나와도 **durian이 과일, cultivator가 사람을 나타내는 것을 learning**하면 orange farmer처럼 normalization이 될 것이다. (값이 비슷하기 때문)  
 - Word Embedding이 이런 Normalization이 가능한 이유는 매우 큰 단어 뭉치들 (10억 ~ 100억개의 단어) Learning하기 때문이다. 
 
 ### Transfer Learning and Word Embeddings  
@@ -257,4 +257,58 @@ y^ : 예측 값
 
 ![image](https://user-images.githubusercontent.com/32921115/104000965-54143000-51e2-11eb-8241-c38f508d7e49.png)  
 
-## Negative Samplin
+- 여기서 세타는 output과 관련된 weight parameter  
+
+### 문제점  
+- 계산 속도가 느림. 특히 softmax일 경우 len(v) =10000일 때, 10000개의 단어를 계산해야 한다.  
+- **hierarchical softmax**를 사용해 해결, Tree를 사용하는 것인데, 자주 사용하는 단어일 수록 Tree의 top, 그렇지 않다면 bottom에 둔다. -> Search가 log로 줄기 때문에 softmax보다 빠름.  
+
+## Negative Sampling  
+
+### 배경
+- Context C를 샘플링하면, Target t를 context의 앞 뒤 10단어 내에서 샘플링할 수 있음.  
+- 무작위로 샘플링하는 방법이 가장 간단한데, the, of,a 같은 단어들이 빈번하게 샘플링됨.  
+- 따러서 이 것들의 균형을 맞추기 위해 다른 방법을 사용해야 함.  
+
+### Defining a new learning problem
+
+![image](https://user-images.githubusercontent.com/32921115/104003516-d7835080-51e5-11eb-9e13-a4f9e68ca218.png)
+
+- 위에서 orange-juice와 같은 positive training set이 있다면, 무작위로 negative traning set을 K개 샘플링한다.  
+- 'of'같이 context에 있는 단어를 선택할 수도 있는데, Positive지만 일단은 negative라고 취급한다.  
+
+### Model  
+
+![image](https://user-images.githubusercontent.com/32921115/104004156-c38c1e80-51e6-11eb-9407-d4d45a9df3c0.png)
+
+- Context와 Target이 input x가 되고, positive or negative는 output y가 된다.  
+- logistic regression model로 정의할 수 있다. -> 1만 차원의 softmax가 아닌 1만차원의 Binary classfication 문제로 변함.  
+- **skip-gram에 비해 계산량이 줄어든다.**  
+
+### 어떻게 Negative sample을 선택?  
+1. Corpus에서의 Empirical frequency(경험적 빈도)에 따라서 샘플링, 얼마나 자주 다른 단어들이 나타나는 지에 따라서 샘플링 할 수 있음.  
+2. 1/voca_size 사용해 무작위로 샘플링
+
+## Global vector for word representation (GloVe) word vector  
+- **corpus에서 i의 context에서 j가 몇번 나오는지 (Xij)** 구하는 작업.  
+- Context와 target의 범위를 어떻게 지정하느냐에 따라 Xij == Xji 일수 있고, 아닐 수도 있다.  
+
+## Sentiment Classfication  
+- NLP에서 중요한 구성요소 중 하나.  
+- 많은 dataset이 필요 없이 **Word Embedding**을 사용해 좋은 성능의 classfication을 만들 수 있음.  
+
+### Simple sentiment classfication model  
+
+![image](https://user-images.githubusercontent.com/32921115/104005031-e0752180-51e7-11eb-8490-6f8a08020179.png)
+
+- "The dessert is excellent"라는 input이 있을 때, 각 word들 embedding vector(300D)로 변환하고 각 단어의 vector 값들의 평균을 구해 softmax의 output으로 결과를 예측하는 모델  
+- 적은 dataset or 자주 사용되지 않는 단어가 input이어도 해당 모델에 적용 가능.  
+-'Completely lacking in good taste, good service, and good ambience'라는 부정적인 sentence가 있을 경우, **단어의 순서**를 무시하고 단순히 good이라는 단어가 많이 나와 positive로 예측할 수 있음.
+- 위의 문제를 RNN을 이용해서 해결할 수 있다.  
+
+### RNN for sentiment classfication  
+
+![image](https://user-images.githubusercontent.com/32921115/104005568-ab1d0380-51e8-11eb-9541-8a4d82ef2b16.png)  
+
+- RNN을 이용해 **Sequence를 고려하기 때문**에 해당 리뷰가 부정적인 것을 알 수 있다.  
+- absent라는 단어가 training set에 포함되지 않아도 word embedding이 되면, normalization되어 제대로 된 결과를 얻을 수 있다.  
