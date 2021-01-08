@@ -253,8 +253,8 @@ y^ : 예측 값
 
 ### Softmax Fucntion and Loss Fucntion  
 
-![image](https://user-images.githubusercontent.com/32921115/104000939-4a8ac800-51e2-11eb-836e-266b9f7355a3.png)
+![image](https://user-images.githubusercontent.com/32921115/104000939-4a8ac800-51e2-11eb-836e-266b9f7355a3.png)  
 
-![image](https://user-images.githubusercontent.com/32921115/104000965-54143000-51e2-11eb-8241-c38f508d7e49.png)
+![image](https://user-images.githubusercontent.com/32921115/104000965-54143000-51e2-11eb-8241-c38f508d7e49.png)  
 
-## Negative Sampling  
+## Negative Samplin
