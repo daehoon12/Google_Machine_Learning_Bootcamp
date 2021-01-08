@@ -216,3 +216,28 @@ y^ : 예측 값
 
 - **우리가 학습해야되는 것이 Embedding Matrix E라는 것이 가장 중요, E는 초기에 무작위로 초기화 된다.**  
 - one-hot vector 곱은 **매우 비효율적**, one-hot vector가 꽤 큰 차원인데다가 대부분 0으로 채워져 있어 메모리 낭비도 심하고 compute 양도 많음. 실제로는 **Embedding vector를 얻는 특화된 함수를 사용함**  
+
+## Learning word embedding  
+
+### Neural language model  
+
+- 가장 자연스러운 단어 시퀀스를 찾아내는 Model  
+- 이전 단어들이 주어졌을 때, 다음 단어를 예측 or 주어진 양쪽의 단어들로부터 가운데 비어있는 단어를 예측  
+- **Embedding Matrix를 학습**할수 있는 방법
+
+![image](https://user-images.githubusercontent.com/32921115/103997623-b1a67d80-51de-11eb-81bb-10c166175fa6.png)
+
+- 위의 그림에서 단어들의 one-hot vector O가 있고, **Matrix E를 통해 Embedding vector**를 얻을 수 있음.  
+- **Embedding Vector는 Network의 Input**으로 들어가고, Output은 **Softmax 함수를 통해 Voca의 확률들로 변환**된다.  
+
+![image](https://user-images.githubusercontent.com/32921115/103998751-9be58800-51df-11eb-934d-f1c112580ad6.png)
+
+- **fixed historical window**를 사용, 예를 들어 다음 단어를 에측하는데 앞의 4개의 단어만 사용하는 것이다. 크기는 hyperparameter로 설정할 수 있음.  
+- 
+
+## Word2Vec  
+- Embedding의 한 종류 (Word Embedding), **단어의 유사도를 측정**하기 위해 word를 Vector로 바꾸어주는 Algorithm, 
+
+
+
+![image](https://user-images.githubusercontent.com/32921115/103997623-b1a67d80-51de-11eb-81bb-10c166175fa6.png)
