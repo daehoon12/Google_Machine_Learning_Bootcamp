@@ -83,3 +83,28 @@ ex) 10시간 동안의 평균 값을 다음 예측 값으로 사용
 
 ![image](https://user-images.githubusercontent.com/32921115/103262942-bf435280-49e9-11eb-9b53-99bcddb052ad.png)
   
+# Tensorflow Code  
+- tf.data.Dataset.from_tensor_slices([]) : list나 numpy array를 tensor로 바꿈  
+
+![image](https://user-images.githubusercontent.com/32921115/104086368-af095e00-529a-11eb-9115-e3de7de2e66f.png)
+
+- batch : batch_size를 지정해 size만큼 데이터를 읽어 들임, drop_remainder는 남은 데이터를 drop할 것인가 여부    
+
+![image](https://user-images.githubusercontent.com/32921115/104086386-d7915800-529a-11eb-81de-67f10aab4198.png)
+
+- window : 데이터를 window로 구성, window_size, slice, drop_remainder parameter  
+
+![image](https://user-images.githubusercontent.com/32921115/104086406-14f5e580-529b-11eb-8fa3-22a03caddb15.png)
+
+- flat_map : dataset에 함수를 apply하고, 결과를 flatten하게 펼침  
+- 아래의 예제는 batch로 5개의 값을 읽고, flatten된 return값을 받음  
+![image](https://user-images.githubusercontent.com/32921115/104086426-48d10b00-529b-11eb-8e72-0a7fe6f413a2.png)
+
+- shuffle : Dataset을 섞음  
+
+![image](https://user-images.githubusercontent.com/32921115/104086447-86359880-529b-11eb-9c5e-706a2ffec672.png)
+
+- map : dataset 전체에 함수를 매핑. Time Series Dataset을 만드려는 경우, **train/label 값을 분류하는 용도**로 활용 
+
+![image](https://user-images.githubusercontent.com/32921115/104086476-bb41eb00-529b-11eb-82ec-90c369cc067c.png)
+  
