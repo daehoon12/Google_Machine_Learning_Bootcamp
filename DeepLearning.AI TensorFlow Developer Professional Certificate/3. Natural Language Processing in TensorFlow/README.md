@@ -16,7 +16,7 @@
 - keras.layers.Embedding(vocab_size, 16) : vocab_size는 사전의 크기, 두번째 parameter인 16은 생성되는 임베딩 벡터의 크기, **10,000개 의 단어에 대한 크기 16의 임베딩 벡터를 10,000개 만든다.**  
 - keras.layers.GlobalAveragePooling1D(문장 수, 단어 수, embedding 벡터 크기) : (문장 수, embedding_vector size)로 바꿈, **입력으로 사용되는 리뷰에 포함된 단어 개수가 변경되더라도 같은 크기의 벡터로 처리할 수 있게 된다.**  
 - SimpleRNN() : RNN을 정의, activation의 기본값은 tanh  
-- LSTM(96) : LSTM 정의, 여기서 96은 Unit의 수, 앞에 **Bidirectional** 붙일 시 양방향에서 학습.  
+- LSTM(96, return_sequences=True) : LSTM 정의, 여기서 96은 Unit의 수, 앞에 **Bidirectional** 붙일 시 양방향에서 학습., return_sequences=True의 의미는 LSTM의 중간 스텝의 출력을 모두 사용하라는 의미. (Default는 False)  
 
 ### Model Parameter 구하는 방법  
 1. Embedding  
