@@ -44,3 +44,13 @@
 2. Sparse Connection : Parameter sharing을 통해 모든 image data를 넣는 것이 아니라, filter와 똑같은 size의 data를 input으로 넣어서 learning. **Overfitting 방지, neuron의 weight가 너무 커지는 것을 방지**  
 
 ![image](https://user-images.githubusercontent.com/32921115/104586661-1b27ff80-56a9-11eb-9139-c3db96246b2c.png)
+
+## Word2Vec의 원리는?  
+
+## Adam Optimizer의 동작은?  
+- Momentum + RMSProp  
+
+### Momentum  
+- local optima 현상을 막기 위해 
+- dW와 db의 가중평균을 구해서 learning rate에 곱함.  
+- 알파는 하이퍼파라미터, 베타는 마찰 저항  
