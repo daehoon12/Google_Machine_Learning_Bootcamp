@@ -53,4 +53,23 @@
 ### Momentum  
 - local optima 현상을 막기 위해 
 - dW와 db의 가중평균을 구해서 learning rate에 곱함.  
-- 알파는 하이퍼파라미터, 베타는 마찰 저항  
+- 알파는 하이퍼파라미터, 베타는 마찰 저항
+
+### RMSProp  
+![image](https://user-images.githubusercontent.com/32921115/104601765-f722e900-56bd-11eb-9de7-5eef09401277.png)
+
+- 현재 파란색 선으로 이루어진 그래디언트 디센트에서는 수직축으로의 이동 속도를 늦추고 수평축으로의 이동 속도를 빠르게 한다면 그래디언트 디센트 문제를 개선할 수 있음.  
+- 각 Iteration 마다 배치에 대한 dw, db를 계산  
+- 마찬가지로 가중평균을 이용함. 대신 미분계수를 제곱함. **도함수의 제곱을 지수 가중 평균**  
+
+![image](https://user-images.githubusercontent.com/32921115/104602020-4a953700-56be-11eb-8308-9694fa39aeef.png)  
+
+![image](https://user-images.githubusercontent.com/32921115/104602047-5123ae80-56be-11eb-9e8a-7cb386ccdfab.png)  
+
+![image](https://user-images.githubusercontent.com/32921115/104602089-5f71ca80-56be-11eb-8f72-12da5f28dc36.png)
+
+- 위의 예에서 **w의 변화를 키우기 위해 Sdw는 작아져야 하고, b의 변화량을 줄이기 위해 Sdb는 커져야 한다.**  
+- 실제로 도함수 값에 제곱을 해 **상대적으로 큰 값을 가지는 미분 값은 크지만 나눠지는 값도 커져 변화량이 줄고, 도함수 값이 작으면 나누는 값이 작아져 변화량이 커지게 된다.**  
+- 초록 선과 같이 수직 방향의 진동을 억제해 learning을 빠르게 함.  
+- Sdw 제곱근으로 나뉘기 때문에 learning rate를 조금 크게 잡아도 됨 -> **learning speed up!**  
+- **0으로 나뉘지 않도록** 분모에 입실론을 더해줌.  
