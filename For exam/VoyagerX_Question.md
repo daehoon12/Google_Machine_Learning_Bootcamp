@@ -51,11 +51,32 @@
 - Momentum + RMSProp  
 
 ### Momentum  
-- local optima 현상을 막기 위해 
-- dW와 db의 가중평균을 구해서 learning rate에 곱함.  
-- 알파는 하이퍼파라미터, 베타는 마찰 저항
 
-### RMSProp  
+![image](https://user-images.githubusercontent.com/32921115/104603734-0d31a900-56c0-11eb-9b0c-3c5383b44954.png)
+
+- 파란선 : 일반 mini-batch gradient desent 방법, **진동**을 하면서 빨간 점에 도달  
+- 보라선 : learning rate를 높게 주면 진폭이 커짐  
+- 빨간선 : momentum을 이용해 진폭은 줄이고, 오른쪽으로는 더 빨리 이동함  
+
+### 동작  
+- 먼저 각 iteration에 대한 dW, dB를 구한다.  
+- 지수 가중 평균을 구함  
+
+![image](https://user-images.githubusercontent.com/32921115/104604348-9943d080-56c0-11eb-9b53-d02975723db4.png)
+
+![image](https://user-images.githubusercontent.com/32921115/104604414-ae206400-56c0-11eb-94a4-6767e093a1a6.png)
+
+- 이 값으로 weight와 bias를 업데이트 한다.  
+- 모맨텀에서 가한 연산이 지수 가중 평균이기 때문에, **+, -로 진동을 하는 bias는 평균이 0에 가깝게 되어** 진동 폭이 준다.  
+- 반면 **오른쪽으로 값이 있던 W의 평균은 큰 값을 가지게 되어 더욱 빨리 업데이트**가 된다.  
+- 모맨텀을 물리적으로 바라보면 등고선 형태는 밥그릇 같은 모양이 되고 빨간 점은 밥그릇의 가장 아래 가운데 부분이 됨.  
+- Vdw, Vdb는 공이 밥그릇 아래로 내려가는 속도라 보면, dW, db는 속도의 변화율인 가속도로 해석  
+- 베타는 0과 1 사이의 값이므로 속도를 줄어들게 하는 **마찰력**이라고 볼 수 있다.  
+
+![image](https://user-images.githubusercontent.com/32921115/104605131-749c2880-56c1-11eb-9fc1-6c51e95dd12c.png)
+
+- 정리하면 모멘텀은 **그래디언트 디센트에 지수가중평균 개념을 도입**하여 어떤 축으로 진동하는 값을 줄여주어서 학습 속도를 빠르게 하고 빠르게 이동해야 하는 축으로는 좀 더 빠르게 이동할 수 있도록 만들어 주는 방법이라고 볼 수 있습니다.
+### RMSProp (Root Mean Square Prop)  
 ![image](https://user-images.githubusercontent.com/32921115/104601765-f722e900-56bd-11eb-9de7-5eef09401277.png)
 
 - 현재 파란색 선으로 이루어진 그래디언트 디센트에서는 수직축으로의 이동 속도를 늦추고 수평축으로의 이동 속도를 빠르게 한다면 그래디언트 디센트 문제를 개선할 수 있음.  
@@ -73,3 +94,20 @@
 - 초록 선과 같이 수직 방향의 진동을 억제해 learning을 빠르게 함.  
 - Sdw 제곱근으로 나뉘기 때문에 learning rate를 조금 크게 잡아도 됨 -> **learning speed up!**  
 - **0으로 나뉘지 않도록** 분모에 입실론을 더해줌.  
+- 정리하면 RMSProp은 **모멘텀과 같이 진동을 줄이는 효과**도 있고 **더 큰 러닝 레이트를 사용하여 학습 속도를 증가**시킬 수 있다는 장점이 있습니다.
+### Adam  
+- Momentum + RMSProp  
+- 성능이 이미 증명되어 Default로 쓰면 좋음  
+
+### 동작  
+- Momentum과 RMSProp에서 다룬 것과 같이 현재 배치를 대상으로 **dw, db**를 구함.  
+- 똑같이 모멘텀과 RMSProp에서 가중 평균을 구한것처럼 Vdw, Vdb, Sdw, Sdb를 구한다.  
+- Bias Correction을 사용한다.  
+
+![image](https://user-images.githubusercontent.com/32921115/104603423-bb891e80-56bf-11eb-8c67-11b5d0adf94e.png)
+
+![image](https://user-images.githubusercontent.com/32921115/104603476-cc399480-56bf-11eb-9152-ef75cf5b1f50.png)
+
+-최종으로 업데이트 되는 식  
+
+![image](https://user-images.githubusercontent.com/32921115/104603550-dfe4fb00-56bf-11eb-9b05-da911d712e5c.png)
