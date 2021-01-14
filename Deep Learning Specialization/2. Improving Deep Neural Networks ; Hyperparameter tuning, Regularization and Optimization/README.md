@@ -143,7 +143,7 @@ ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50�
 - 기존 Gradient Descent는 Global minimun이 아닌 local minimum에서 멈추는 경우가 있음.  
 - 이 속도에 운동량을 곱해주는 것이 Momentum  
 - dW와 db의 가중평균을 구해 learning rate에 곱한다.  
-- 여기서 하이퍼파라미터의 베타는 보통 0.9 사용. 베타가 0이면 높은 마찰 저항, 1이면 마찰 저항 X  
+- 여기서 하이퍼파라미터의 베타는 보통 0.9 사용. 베타가 0이면 마찰 저항X , 1이면 높은 마찰 저항  
 - 왼쪽 공식 사용할 것.  
 ![image](https://user-images.githubusercontent.com/32921115/100494402-9a5a8600-3184-11eb-9f4c-af1fe2cd50d3.png)
 
