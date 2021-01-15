@@ -199,8 +199,10 @@ ex) 알파0이 0.2일 때
 - Covariate Shift : 이전 Layer의 파라미터 변화로 인해 현재 **Layer의 분포가 바뀌는 현상**  
 - **Data의 분포가 바뀌면?** -> 우리가 찾아야하는 분포를 제대로 찾기 어려워짐.  
 ### 2) Gradient Vanishing/ Exploding 방지  
-- Gradient라는 것이 결국 미분값 변량을 의미하는데 이 값이 매우 Vanishing or Exploding 해지면 Network를 효과적으로 Learning하지 못함.  
-- Batch Normalization은 학습하는 과정 자체를 전체적으로 안정화"하여 학습 속도를 가속 시킬 수 있는 근본적인 방법  
+- 기존 DNN에서는 learning rate를 너무 높게 잡을 경우, Gradient가 explode/vanish하거나 local optima 현상에 빠지는 경우가 있었다. 이는 **Parameter의 scale 때문인데, batch normalization을 사용할 경우 propagation할 때 parameter의 scale에 영향을 받지 않는다.** 즉 **learning rate를 크게 잡을 수 있고 이는 빠른 learning이 가능하다!**
+
+### 3) Regularization 효과  
+- 미니 배치마다 평균과 표준편차를 계산하여 사용하므로 training data에 일종의 잡음 주입 효과로 Overfitting 방지하는 효과 발생 (Dropout 효과와 비슷함)  
 
 ## 3) Multi-class classfication  
 
