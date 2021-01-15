@@ -182,7 +182,9 @@ ex) 알파0이 0.2일 때
 ## 2) Batch Normalization  
  
 ### Batch Normalization  
-![image](https://user-images.githubusercontent.com/32921115/103518979-0c2a9b80-4eb8-11eb-9299-f68b3f6823f4.png)
+
+![image](https://user-images.githubusercontent.com/32921115/104681037-b5815500-5734-11eb-95de-9b28d1e4d467.png)
+
 
 - **Mini Batch의 평균과 분산**을 이용해서 Normalization 한 뒤, Scale 및 shift 를 감마(γ) 값, 베타(β) 값을 통해 실행. (감마와 베타는 실행 가능한 변수), **Backpropagation**을 통해 Learning 됨.  
 - 기존 output = g(Z), Z = WX + b 식은 output = g(BN(Z)), Z = WX + b, 즉 기존 **Activation Function의 Input에 Batch Normalization**을 적용한다.  
