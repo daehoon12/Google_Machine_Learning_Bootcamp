@@ -182,7 +182,8 @@
 
 ![image](https://user-images.githubusercontent.com/32921115/104603550-dfe4fb00-56bf-11eb-9b05-da911d712e5c.png)
 
-### 9. Batch Normalization의 동작은?    
+
+## 9. Batch Normalization의 동작은?    
 
 ![image](https://user-images.githubusercontent.com/32921115/104681037-b5815500-5734-11eb-95de-9b28d1e4d467.png)
 
