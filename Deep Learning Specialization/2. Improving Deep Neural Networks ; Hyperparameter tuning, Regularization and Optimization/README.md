@@ -109,17 +109,31 @@ N(in) : 이전 Node의 수, N(out) : 다음 Layer의 Node 수
 
 ## 2. Optimization algorithms  
 
+
+
+### Stochastic Gradient Descent  
+- Batch Size가 1인 Gradient Descent  
+- Iteration이 dataset의 개수  
+- 하나의 Data가 무작위로 선택되어 learning  
+
+#### 단점  
+- 노이즈가 매우 심하다.  
+
 ### Mini-batch gradient descent  
 - 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
-- **Stochastic Gradient Descent** : batch size를 **1**로 지정한다.  
+
 ![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
 
 - 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**  
+- SDG의 노이즈를 줄이면서 전체 batch보다 효율적  
 - Mini-batch size는 보통 2의 지수로 설정한다.  
 ![image](https://user-images.githubusercontent.com/32921115/100493758-8b240a00-317d-11eb-8827-f1dea27d554f.png)
 
 #### batch를 정하는 방법  
 - Training set가 작을 때 (m <=2000)이면 그냥 batch size로 학습하고, 이것보다 크면 2의 지수 (64,128,256,512)로 한다.
+
+#### 셋의 공통적인 단점  
+- Local Optima, Plateau에 빠지기 쉬움.  
 
 ### Understanding exponentially weighted averages  
 - 데이터의 이동 평균을 구할 때, 오래된 데이터가 미치는 영향을 지수적으로 감쇠(exponential decay) 하도록 만들어 주는 방법.  
