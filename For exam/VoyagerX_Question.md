@@ -56,6 +56,26 @@
 - Test Set : learning이 다 된 Model의 **최종 성능을 평가하기 위해 사용.**  
 
 ## 4. Auto Encoder란?  
+- **비지도 방식**으로 **효율적인 데이터 압축을 학습**하는 데 사용되는 인공신경망의 한 종류이다.
+
+## 나오게 된 계기  
+- 더 큰 input vector일 수록 많은 파라미터를 가짐.  
+- but learning data에 굶주림도 증가해, 충분한 양의 데이터가 없으면 overfitting이 일어남.  
+- convolutional 구조로 모델의 parameter를 줄이긴 했지만, 대량의 label이 필요한 데이터를 요구함. 이 데이터들은 희소하고 만드는데 비싸다.  
+- 즉, Unsupervised 방식인 Embedding learning or 저차원 표현으로 이 문제를 해결  
+
+## 원리 및 아키텍처  
+
+![image](https://user-images.githubusercontent.com/32921115/104697759-9219d280-5753-11eb-80d4-351ea4763694.png)
+
+- Encoder : 데이터 입력을 받고 **이를 저차원 벡터로 압축한다. (일종의 손실 압축)**, 중요한 feature를 최대한 보존하는 것을 목표로 하며, 둔감한 feature는 손실시킴.  
+- Decoder : 임의의 레이블에 임베딩을 맞추는 대신 계산을 반전해 원래 입력으로 재구성  
+- 입력과 출력이 동일함.  
+
+## 효과  
+- 데이터 압축 : feature의 수가 줄어 dimension이 줄어 memory가 적어짐.  
+- curse of dimensionality 회피 : 데이터의 dimension이 증가할 수록 모델 추청에 필요한 data의 개수가 기하급수적으로 증가하는데, feature 수를 줄여줌으로써, 데이터의 dimension을 감소시킴.  
+- 
 
 ## 5. Dropout의 효과는?  
 1. Voting 효과 : 무작위로 neuron을 삭제하고 learning을 반복하면, 모든 neuron들이 골구로 fitting이 되어 평균적으로 잘 예측해 어떤 데이터든지 다 분류할 수 있게 된다. 이를 Voting 효과라고 한다.  
@@ -76,6 +96,26 @@
 ![image](https://user-images.githubusercontent.com/32921115/104586661-1b27ff80-56a9-11eb-9139-c3db96246b2c.png)
 
 ## 7. Word2Vec의 원리는?  
+- Word2Vec : word embedding을 생성하기 위한 프레임워크, CBOW 모델, Skip-Gram 모델이 있음.  
+
+### 1. CBOW Model  
+- 전체 Context에서 Embedding을 만들고 Target 단어를 예측하기 위해 Encoder를 사용. 
+
+### 2. Skip-Gram Model  
+- 중심이 되는 단어를 무작위로 선택하고 주변 단어를 예측.  
+- 중심 단어가 Context(input)이 되고 주변 단어를 선택해서 Target(prediction)이 되도록 하는 **superivised learning**   
+- example : "the boy went to the bank." 라는 문장을 (문맥, target) 순서로 분리하면 ([the, went], boy), ([boy, to], boy), ([went, the], boy), ([to, bank], boy)로 나뉜다. 여기서 input은 target output은 문맥의 단어중 하나다. 첫 번째 쌍에서 두 개의 데이터 (boy, the), (boy, went)를 생성.  
+
+### 3. Encoder  
+- dictionary가 V개의 단어를 가지고 있다면, 인코더는 V개의 row를 가진 Lookup Table, 여기서 i번째 행은 i번째 어휘 단어에 대응하는 embedding vector.  
+- 즉 Lookup Table (코세라 강의에서는 Embedding Matrix라고도 함)과 i번째의 one-hot vector의의 내적을 통해 Embedding Vector를 얻어 단어를 예측할 수 있다.  
+- Lookup Table은 초기에 무작위로 초기화되고 우리가 learning해야 하는 것이 Lookup Table이 된다.  
+
+### Word Embedding  
+- word를 사용자가 지정한 크기만큼 숫자로 된 vector로 만듬. 특정한 Label이 있는 것이 아니라 Unsupervised Learning 방법      
+- one-hot representation의 단점은 **단어의 개수가 늘어나면 vector의 dimension도 늘어나고**, 각 단어를 하나의 Object로 여기기 때문에 단어 간의 관계를 추론할 수 없는 단점이 존재.  
+- **단어 간 유사도를 반영할 수 있도록**하기 위해 word를 Vector로 바꾸어주는 Algorithm.    
+- 유사도를 체크하는 방법으로 각 단어의 Cosine Similarity 방식을 사용하는데, Embedding Vector를 통해 유사성을 체크함.(One hot vector는 항상 값이 0이 나옴) 
 
 ## 8. Adam Optimizer의 동작은?  
 - Momentum + RMSProp  
