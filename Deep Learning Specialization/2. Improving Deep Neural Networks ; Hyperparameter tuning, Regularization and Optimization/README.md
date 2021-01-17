@@ -162,30 +162,46 @@ N(in) : 이전 Node의 수, N(out) : 다음 Layer의 Node 수
 ![687474703a2f2f692e696d6775722e636f6d2f5846556d384d472e6a7067](https://user-images.githubusercontent.com/32921115/99241947-df57f180-2841-11eb-818f-28615872c19c.jpg)
 
 ## 2. Optimization Algorithms  
+### Gradient Descent  
+- **Loss Fucntion의 Loss를 줄이기 위한 Optimizer 방법 중 하나.** 미분 값(기울기)이 최소가 되는 점을 찾아 알맞은 W와 b를 찾아냄  
+
+### 과정  
+1. W를 설정한다. (보통은 임의의 값, or activation 함수에 따라 Xhavier나 He initializaion을 써도 됨)  
+2. W에서 Gradient를 계산한다.  
+3. learning rate와 곱해 W를 조정한다.  
+
+### 단점  
+- 한번에 모든 데이터 셋을 사용해 학습 속도가 느림.  
 
 ### Stochastic Gradient Descent  
 - Batch Size가 1인 Gradient Descent  
 - Iteration이 dataset의 개수  
 - 하나의 Data가 무작위로 선택되어 learning  
 
-#### 단점  
+### 단점  
 - 노이즈가 매우 심하다.  
 
-### Mini-batch gradient descent  
-- 기존의 Gradient Decent의 문제점은 최적값을 찾을 때 마다 모든 data set을 넣어야 해서 학습하는데 시간이 오래 걸림.  
-
-![image](https://user-images.githubusercontent.com/32921115/100493729-354f6200-317d-11eb-9124-22cf151a4441.png)
-
-- 이 2개의 장점을 섞은 기법이 **Mini-batch gradient**  
+### Mini-batch Gradient Descent  
+- 일반적으로 2의 n승으로 선택  
 - SDG의 노이즈를 줄이면서 전체 batch보다 효율적  
-- Mini-batch size는 보통 2의 지수로 설정한다.  
-![image](https://user-images.githubusercontent.com/32921115/100493758-8b240a00-317d-11eb-8827-f1dea27d554f.png)
+
+### 셋의 공통적인 단점  
+- Local Optima, Plateau에 빠지기 쉬움.  
+
+### Local Optima  
+
+![image](https://user-images.githubusercontent.com/32921115/104686614-e8c9e100-5740-11eb-8e87-91e42c3f1c61.png)
+
+- 위의 Loss function을 보면 최소 지점에 도달하지 않았음에도 불구하고, 어느 지점에 들어가니까 평평하고, 더 진행하려보니까 loss가 늘어나므로 w를 멈추게 된다. 이러한 지점을 **local optima(minumum)**이라 한다.
+
+### Plateau  
+
+![image](https://user-images.githubusercontent.com/32921115/104686978-ace34b80-5741-11eb-8ea7-24114c9760e0.png)
+
+- Global Optima를 향해 나아가는데, 평지가 생겨서 더 이상 loss가 업데이트 되지 않는 현상  
 
 #### batch를 정하는 방법  
 - Training set가 작을 때 (m <=2000)이면 그냥 batch size로 학습하고, 이것보다 크면 2의 지수 (64,128,256,512)로 한다.
-
-#### 셋의 공통적인 단점  
-- Local Optima, Plateau에 빠지기 쉬움.  
 
 ### Understanding exponentially weighted averages  
 - 데이터의 이동 평균을 구할 때, 오래된 데이터가 미치는 영향을 지수적으로 감쇠(exponential decay) 하도록 만들어 주는 방법.  
