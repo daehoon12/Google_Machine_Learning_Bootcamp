@@ -101,10 +101,18 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 람다가 커짐 -> Backpropagation 과정에서 Regularization 매개변수까지 빼 W의 값이 작아짐-> Z값의 범위가 좁아짐 -> 함수가 선형인 함수처럼 변함 -> 덜 overfitting 해짐  
 
 ### Dropout Regularization   
-- 뉴런의 연결을 임의로 삭제  
+- 뉴런의 연결을 임의로 삭제해 Regularization 효과를 얻는 방법  
 - 1 - keep_prob = hidden unit을 삭제할 확률  
 - keep_prob은 각 층마다 설정 가능  
 
+#### 효과  
+1. Voting 효과 : 무작위로 neuron을 삭제하고 learning을 반복하면, 모든 neuron들이 골구로 fitting이 되어 평균적으로 잘 예측해 어떤 데이터든지 다 분류할 수 있게 된다. 이를 Voting 효과라고 한다.  
+
+2. Co-adaptation 회피 효과 : 특정 neuron의 weight, bias가 큰 값을 갖게 되면, 그 neuron의 영향이 커지면서 다른 neuron들이 제대로 learning을 할 수 없다. 쉽게 말하면 **두개 이상의 neuron이 하나의 neuron처럼 활동하는 것**이라고 생각하면 되는데, 이는 **2개 이상의 neuron이 동일한 feature만 구분할 것이고 효율은 떨어지면서 계산량만 증가하는 현상**이 발생할 것이다. dropout을 통해 learning을 하면서 뉴런들이 서로 동조화(co-adaptation)을 피하고, 각각의 neuron이 **다양한 feature를 감지하면서** 더욱 강건(robust)한 network를 구성할 수가 있다.  
+
+- 마치 오랜 시간동안 지구상에 존재하는 생명체들이 유전자 복제가 아닌 양성 생식을 통해 유전자를 결합하고, **강인한 유전자들이 살아남는 것**과 마찬가지다.  
+
+3. Ensemble 기법 (모든 Model의 평균값)과 비슷한 효과를 발휘함.  
 ### Normalizing Input  
 - 전체 구간을 0~1 사이의 값으로 맞춘다.
 
