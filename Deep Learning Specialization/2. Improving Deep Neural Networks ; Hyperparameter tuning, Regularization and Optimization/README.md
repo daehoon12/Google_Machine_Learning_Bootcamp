@@ -47,17 +47,58 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 - 만약 High bias (Underfitting)인 경우, **Network를 더 크게 만들거나 학습을 더 길게한다.**    
 - 만약 High Variance (Overfitting)인 경우, **더 많은 데이터를 수집**한다.  
+### Norm  
+- Vector의 크기 (또는 길이)를 측정하는 방법. 두 벡터 사이의 거리를 측정하는 방법  
+
+### L1 Norm  
+
+![image](https://user-images.githubusercontent.com/32921115/104831594-c1ece580-58cd-11eb-8514-754453f307cb.png)
+
+- 벡터 p,q의 **각 원소들의 차이의 절대값의 합.** (맨해튼 거리)  
+- p=(3,1,-3), q=(5,0,7)이라면 p,q의 L1 Norm은 |3-5| + |1-0| + |-3-7| = 13이 됨.  
+
+### L2 Norm  
+
+![image](https://user-images.githubusercontent.com/32921115/104831612-f3fe4780-58cd-11eb-9685-cdcdbe39bc60.png)
+
+- 직선의 거리 (유클리디안 거리)  
+- p=(3,1,-3), q=(5,0,7)이라면 p,q의 L2 Norm은 (5-3)^2 + (1-0)^2 + (-3-7)^2에 루트를 씌운 값이 된다.  
 
 ### Regularization  
 - Weight를 조정하는데에 제약을 거는 기법. Overfitting을 방지하는데 사용한다.
 - 일반적으로 L2 (Norm 2) Regularization을 사용 (**Weight decay**)  
 
-![9933B6495B79164D0E](https://user-images.githubusercontent.com/32921115/99686703-315d7900-2ac7-11eb-9571-e427871643a4.png)
+![image](https://user-images.githubusercontent.com/32921115/104831698-9a4a4d00-58ce-11eb-93c4-565a792c5594.png)
 
+- 단순하게 loss fucntion의 값이 작아지는 방향으로 learning을 하면, 특정 weight가 너무 큰 값을 가지게 되어 **Overfitting 현상**이 발생한다.  
+
+![image](https://user-images.githubusercontent.com/32921115/104831717-c2d24700-58ce-11eb-90fd-45ab0afe4746.png)
+
+- Regularization을 통해 Overfitting을 방지한 모델  
+
+### L1 Regularization  
+
+![image](https://user-images.githubusercontent.com/32921115/104831883-fcf01880-58cf-11eb-94de-b4ad0cc077fa.png)
+
+- L1 Regularization을 사용하는 regression model을 Lasso Regression이라고 한다.  
+
+### L2 Regularization  
+
+![image](https://user-images.githubusercontent.com/32921115/104831892-1abd7d80-58d0-11eb-8e5b-d2dd9c9b334b.png)
+
+- L2 Regularization을 사용하는 regression model을 Ridge Regression이라고 한다.  
+
+### 선택의 기준  
+- 가중치 w 가 작아지도록 학습한 다는 것은 결국 Local noise 에 영향을 덜 받도록 하겠다는 것이며 이는 평균 데이터와 크게 다른 데이터 (Outlier)의 영향을 더 적게 받도록 하겠다는 것  
+
+![image](https://user-images.githubusercontent.com/32921115/104831940-9d463d00-58d0-11eb-95c0-b7ad3b240163.png)
+
+- 위의 그림에서 L1은 빨간 or 파란선을 사용해 특정 feature를 0으로 처리하는 것이 가능함. 즉 **Feature Selection**이 가능  
+- 하지만 미분 불가능한 점이 있기에 Gradient-base learning에서 사용하지 않음. (L2를 많이 사용하는 이유)  
 
 #### 왜 Regularization을 하면 Overfitting이 방지가 될까?
 - Tanh 함수를 예로 들면  
-- 람다가 커짐 -> W 매개변수 작아짐 (Cost Function를 최소하하기 위해) -> Z값의 범위가 좁아짐 -> 함수가 선형인 함수처럼 변함 -> 덜 overfitting 해짐  
+- 람다가 커짐 -> Backpropagation 과정에서 Regularization 매개변수까지 빼 W의 값이 작아짐-> Z값의 범위가 좁아짐 -> 함수가 선형인 함수처럼 변함 -> 덜 overfitting 해짐  
 
 ### Dropout Regularization   
 - 뉴런의 연결을 임의로 삭제  
@@ -109,9 +150,7 @@ N(in) : 이전 Node의 수, N(out) : 다음 Layer의 Node 수
 - 파란 선은 실제 미분 했을 때 구해지는 접선의 기울기, **GradApprox 공식**을 이용해 구한 선과 근사하다. 
 ![687474703a2f2f692e696d6775722e636f6d2f5846556d384d472e6a7067](https://user-images.githubusercontent.com/32921115/99241947-df57f180-2841-11eb-818f-28615872c19c.jpg)
 
-## 2. Optimization algorithms  
-
-
+## 2. Optimization Algorithms  
 
 ### Stochastic Gradient Descent  
 - Batch Size가 1인 Gradient Descent  
