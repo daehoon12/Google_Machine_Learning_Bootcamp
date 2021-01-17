@@ -114,7 +114,11 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 3. Ensemble 기법 (모든 Model의 평균값)과 비슷한 효과를 발휘함.  
 ### Normalizing Input  
-- 전체 구간을 0~1 사이의 값으로 맞춘다.
+
+![image](https://user-images.githubusercontent.com/32921115/104832088-bbf90380-58d1-11eb-8f76-d375734431e1.png)
+
+- 값의 Scale을 0~1 사이로 맞춰 데이터의 분포를 조정한다.  
+- 데이터의 단위가 다르거나 (cm와 km를 비교할 때), 단위가 같더라도 값의 범위가 크게 차이나 비교하기 힘든 상황일 때 (1000점 만점에 90점 vs 100점 만점에 80점 비교), Normalization이나 Standardization을 사용하면 비교하기가 더 수월해진다.  
 
 #### Why normailize Input?  
 
@@ -122,7 +126,6 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 - 위 사진과 같이 Unnormalized 한 그래프에서는 Learning Rate를 매우 작게 설정해야 정상적인 학습이 되는데 이유는 cost 그래프가 너무 길쭉 (elongaed) 하기 때문이다. 즉 Input의 Range가 서로 다르면 **경사 하강법**을 적용하는 것이 매우 까다롭다.  
 - Normalization을 적용해 **Spherical**한 그래프를 만들자! 그러면 더 빠르게 경사 하강법으로 최적화 지점을 찾게 된다.  
-- 예를 들면, 데이터의 단위가 다르거나 (cm와 km를 비교할 때), 단위가 같더라도 값의 범위가 크게 차이나 비교하기 힘든 상황일 때 (1000점 만점에 90점 vs 100점 만점에 80점 비교)  , Normalization이나 Standardization을 사용하면 비교하기가 더 수월해진다.  
 
 ### Vanishing/Exploding Gradients  
 - Vanishing Gradient : Backprob시 Gradients가 너무 작아지는 현상  
