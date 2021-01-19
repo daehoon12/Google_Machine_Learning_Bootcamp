@@ -46,6 +46,11 @@ y^ : 예측 값
 - RNN의 구조를 펼쳐보면(unfold), RNN을 시간 스텝 수만큼 히든 레이어를 가진 deep FNN으로 볼수 있음  
 - 따라서 동일한 방식으로 역전파를 수행(Back-propagation througn time, BPTT)  
 
+### Simplified RNN Notation  
+
+![image](https://user-images.githubusercontent.com/32921115/104986951-ccd38180-5a57-11eb-8c68-be3f87a201ff.png)
+
+
 ## Vanishing Gradients with RNNs  
 - layer가 깊어질 수록 앞의 값 영향을 받지 않음.  
 - 각 layer에서는 tanh, sigmoid 함수를 통과한다. 이 때 Backpropagation을 하면 **미분값은 0~1 사이 값**이 나오고, 이 값을 계속 곱하면 **gradient는 0에 수렴해 올바른 Learning이 되지 않는다.**  
