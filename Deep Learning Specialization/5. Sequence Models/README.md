@@ -299,6 +299,7 @@ y^ : 예측 값
 - 중심이 되는 단어를 무작위로 선택하고 주변 단어를 예측.  
 - 중심 단어가 Context(input)이 되고 주변 단어를 선택해서 Target(prediction)이 되도록 하는 **superivised learning**  
 - 주변 단어는 여러 개를 선택할 수 있다.  
+- Skip-gram이 CBOW보다 성능이 좋음  
 
 ![image](https://user-images.githubusercontent.com/32921115/104000715-013a7880-51e2-11eb-8058-02f2665e0db8.png)
 
