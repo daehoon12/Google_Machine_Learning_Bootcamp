@@ -241,9 +241,61 @@ y^ : 예측 값
 - 
 
 ## Word2Vec  
-- Embedding의 한 종류 (Word Embedding), **단어 간 유사도를 반영할 수 있도록**하기 위해단어 간 유사도를 반영할 수 있도록 word를 Vector로 바꾸어주는 Algorithm.  
+-word embedding을 생성하기 위한 프레임워크, CBOW 모델, Skip-Gram 모델이 있음., **단어 간 유사도를 반영할 수 있도록**하기 위해단어 간 유사도를 반영할 수 있도록 word를 Vector로 바꾸어주는 Algorithm.  
+
+
+### CBOW (Continuous Bag of Words)  
+- **주변에 있는 단어를 가지고, 중간에 있든 단어를 예측**하는 방법.  
+
+### CBOW : Example  
+-"The fat cat sat on the mat"라는 문장이 있다고 가정  
+- {"The","fat","cat","on","the","mat"}으로부터 sat을 예측하는 것이 CBOW가 하는 일.  
+- sat을 중심 단어(center word), predict에 사용되는 단어들을 주변 단어 (context word)라고 한다.  
+
+![image](https://user-images.githubusercontent.com/32921115/105320241-49f22880-5c09-11eb-8ff1-1b98b575a8ee.png)
+
+- window 크기 n을 정하면 중심 단어를 예측하기 위한 단어의 개수는 2n, 이 윈도우를 계속 움직여 context와 center를 바꿔가며 training data를 만들 수 있는데, 이 방법을 sliding window라고 한다.  
+
+### CBOW : 과정  
+
+![image](https://user-images.githubusercontent.com/32921115/105320795-f3391e80-5c09-11eb-9abe-1c2d119d3e87.png)
+
+- Word2Vec은 딥 러닝 모델은 아님. 그리고 일반적인 hidden layer와 달리 activation function이 없으며, lookup table이라는 연산을 담당하는 Projection layer가 존재함.  
+- M=5이기 때문에 CBOW를 수행하고 나서 얻는 각 단어의 Embedding vector의 차원은 5가 됨.  
+- W는 V x M Matrix이며, W'는 M x V Matrix이다. 하지만 두 행렬은 전치행렬이 아니라 차원만 같고 랜덤한 값을 가짐. **이 W와 W'를 learning하는 구조.**  
+
+![image](https://user-images.githubusercontent.com/32921115/105321318-a43fb900-5c0a-11eb-8135-e0dc2c72f64a.png)
+
+- Input : One hot vector  
+- Input과 Lookup table의 곱은 사실 W행렬의 i번째 행을 그대로 읽어오는 것 (Lookup)과 동일하다.  
+- W와 W'를 잘 learning 시키는 것이 목적인 이유가 W의 각 row vector가 **Word2Vec을 수행한 후 각 단어의 M차원의 크기를 갖는 Embedding Vector이기 때문이다. (매우 중요함)**  
+
+![image](https://user-images.githubusercontent.com/32921115/105321589-fd0f5180-5c0a-11eb-8cfd-05ca499bd064.png)
+
+- 그 다음 곱해서 생겨진 결과 벡터 (Embedding Vector)는 Projection Layer에서 평균인 벡터를 구하게 된다.  
+- CBOW와 Skip-Gram의 차이  
+
+![image](https://user-images.githubusercontent.com/32921115/105321917-77d86c80-5c0b-11eb-9802-76d9c15f716d.png)
+
+- 구해진 v와 W'(M x v)를 곱해 z값을 구하고 softmax 함수에 넣는다.  
+- y^은 스코어 벡터라고 하는데, 각 차원에서 값이 의미하는 것은 **중심 단어일 확률**을 나타낸다.  
+
+### CBOW : Loss  
+
+![image](https://user-images.githubusercontent.com/32921115/105322851-c2a6b400-5c0c-11eb-8c82-f256bc9ca65f.png)
+
+- 실제 center word인 one-hot 벡터와 스코어 벡터를 input으로 넣고, 이를 표현  
+
+![image](https://user-images.githubusercontent.com/32921115/105322914-d6521a80-5c0c-11eb-8e91-5b405f5811da.png)
+
+- 하지만 실제로 필요한 건, one-hot vector에서 1 부분만 필요하다. (그것이 타겟이니까), 즉 위와 같이 식을 정의할 수 있다.  
+- y^이 1에 가까우면 전체 loss 값은 0으로 되기 때문에 **값을 최소화 하는 방향으로 W와 W'가 learning이 된다.**  
+- learning이 끝나면 W의 행이나 W'의 열로부터 어떤 것을 Embedding Vector로 사용할지 결정하면 된다.  
 
 ### Skip-gram  
+
+![image](https://user-images.githubusercontent.com/32921115/105323207-36e15780-5c0d-11eb-929d-c7cc507d7865.png)
+
 - 중심이 되는 단어를 무작위로 선택하고 주변 단어를 예측.  
 - 중심 단어가 Context(input)이 되고 주변 단어를 선택해서 Target(prediction)이 되도록 하는 **superivised learning**  
 - 주변 단어는 여러 개를 선택할 수 있다.  
