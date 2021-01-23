@@ -38,6 +38,13 @@ dL = 1/(1-a) (y가 1일 때)  -> 항상 양수 -> 왼쪽으로 감.
 ## Gradient Descent  
 - 최적의 Weight, bias 값을 찾기위한 Optimizer 방법
 
+## Gradient Descent : Example  
+
+![image](https://user-images.githubusercontent.com/32921115/105575861-156da080-5db2-11eb-9291-f3544dd8a1eb.png)  
+
+- SE를 예로 들어보자. L = (y- y^)^2에서 y^ = wx +b다.  
+- 즉 Loss를 최소화 시키는 W와 b를 찾는 과정을 backpropagation을 통해서 찾아낸다.  
+
 ### 원리  
 
 ![image](https://user-images.githubusercontent.com/32921115/103338564-1ddbff80-4ac2-11eb-9d78-5591235d7453.png)
