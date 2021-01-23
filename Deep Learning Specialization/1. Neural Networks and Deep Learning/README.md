@@ -20,6 +20,21 @@
 ## Cost Function  
 - 각 Train Set의 Loss Fucntion의 평균값  
 
+## Backpropagation  
+
+![image](https://user-images.githubusercontent.com/32921115/105575767-45687400-5db1-11eb-8b26-1d446c97ad9f.png)  
+
+- L = -log(a) (y가 0일 때) 
+
+![image](https://user-images.githubusercontent.com/32921115/105575772-50bb9f80-5db1-11eb-8e0b-93b3970e3dd3.png)  
+
+- L = -log(1-a) (y가 1일 때)  
+
+- 위의 함수를 미분  
+
+dL = -1/a (y가 0일 때) -> 항상 음수 -> 오른쪽으로 감.
+dL = 1/(1-a) (y가 1일 때)  -> 항상 양수 -> 왼쪽으로 감.
+
 ## Gradient Descent  
 - 최적의 Weight, bias 값을 찾기위한 Optimizer 방법
 
