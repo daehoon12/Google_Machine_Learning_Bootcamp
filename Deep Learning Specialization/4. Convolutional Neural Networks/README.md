@@ -394,6 +394,7 @@ while gird box:
 
 ![image](https://user-images.githubusercontent.com/32921115/103646470-12467800-4f9d-11eb-817b-e59c2158fbe7.png)
 
+- NMS 사용 전 Pc < threshold인 box를 제거  
 - 나온 Output에서 중복 Detection된 결과들을 제거해야 함 (non-max supresseion)  
 - YOLO Algorithm 완성  
 
