@@ -313,6 +313,8 @@ ex) B = 0.98이라하면 위의 식에서 50이라는 값이 나오고, 이 50�
 
 - Covariate Shift : 이전 Layer의 파라미터 변화로 인해 현재 **Layer의 분포가 바뀌는 현상**  
 - **Data의 분포가 바뀌면?** -> 우리가 찾아야하는 분포를 제대로 찾기 어려워짐.  
+- Batch Norm을 이용해 데이터의 분포를 표준정규분포로 만들어 데이터를 쉽게 찾을 수 있다.  
+
 ### 2) Gradient Vanishing/ Exploding 방지  
 - 기존 DNN에서는 learning rate를 너무 높게 잡을 경우, Gradient가 explode/vanish하거나 local optima 현상에 빠지는 경우가 있었다. 이는 **Parameter의 scale 때문인데, batch normalization을 사용할 경우 propagation할 때 parameter의 scale에 영향을 받지 않는다.** 즉 **learning rate를 크게 잡을 수 있고 이는 빠른 learning이 가능하다!**
 
