@@ -1,7 +1,7 @@
 # Q
 
 ## 1. Gradient Descent란?  
-- **Loss Fucntion의 Loss를 줄이기 위한 Optimizer 방법 중 하나.** 미분 값(기울기)이 최소가 되는 점을 찾아 알맞은 W와 b를 찾아냄  
+  - **Loss Fucntion의 Loss를 줄이기 위한 Optimizer 방법 중 하나.** 미분 값(기울기)을 통해 값이 제일 낮은 곳을 찾아 알맞은 W와 b를 찾아냄  
 
 ### 과정  
 1. W를 설정한다. (보통은 임의의 값, or activation 함수에 따라 Xhavier나 He initializaion을 써도 됨)  
