@@ -207,7 +207,7 @@
 ### 3) Regularization 효과  
 - 미니 배치마다 평균과 표준편차를 계산하여 사용하므로 training data에 일종의 잡음 주입 효과로 Overfitting 방지하는 효과 발생 (Dropout 효과와 비슷함)  
 
-## 10. Cycle GAN이란?  
+## 10. Cycle GAN이란?
 
 ### 나오게 된 배경  
 - Image-to-image traslation은 짝이 있는 Image Training Set를 이용해 Input과 Output 이미지를 매핑하는 것이 목표인 Computer Vision 분야 중 하나. But, 짝이 지어진 Training Data를 얻는 것은 쉽지 않고 만들기도 어렵다.  
@@ -227,3 +227,39 @@
 4. 점점 **G(x) = y'은 y와 F(y) = x'는 x와 근사**하게 된다.  
 
 5. 이 과정에서 GAN 2개가 Cycle 구조로 사용되기 때문에 **CycleGAN으로 불린다.**  
+
+### Loss  
+
+1. Adversarial Loss  
+
+![image](https://user-images.githubusercontent.com/32921115/104814699-bf4daa00-5853-11eb-988b-1ae48aaf709a.png)
+- 생성된 이미지의 분포를 **대상 도메인의 데이터 분포와 일치시키기 위한** Loss Function  
+- G : X -> Y Translator  
+- Dy : Y Discriminator  
+- y~P_data(y) : Y의 data 분포를 따르는 원소 y  
+- 왼쪽 항 : Dy(Y)는 Y를 예측하는 discriminator로 0 ~ 1 사이의 확룰 값을 반환함. Discriminator 입장에서는 이 항의 값이 커져야 한다.  
+- 오른쪽 항 : Dy(G(x))는 Y'을 예측하는 discriminator로 이 값을 줄여야 하는 것이 목표. 이 값이 작아지면 **log(1-x) 함수의 성질에 의해 오른쪽 항의 값은 커진다.** 반면 **Generator 입장**에서는 **G(x)의 값이 커져야 하므로** 오른쪽 항의 **값이 작아지는 것을 목표**로 한다.  
+
+2. Cycle Consistency Loss  
+
+![image](https://user-images.githubusercontent.com/32921115/104814956-fa9ca880-5854-11eb-8130-278f80b06c57.png)
+
+- **G와 F를 통과하기 전 데이터와 통과한 후 데이터**가 서로 **모순되는 것을 방지**하기 위한 Loss Fucntion  
+- **L1 Loss**를 사용해 **F(G(x)), G(F(y))를 x,y에 가깝게** 만들어 Cycle Consistent하게 만들어준다.  
+
+3. 최종 Loss  
+
+![image](https://user-images.githubusercontent.com/32921115/104814980-2c157400-5855-11eb-94bf-a9e5f95e2927.png)
+
+![image](https://user-images.githubusercontent.com/32921115/104814987-36377280-5855-11eb-83de-b97cf6fcb575.png)
+
+- Loss를 작게하는 G, F를 찾고 반대로 Loss를 크게 하는 Dx, Dy를 찾는 적대적 learning을 하게 된다.  
+
+### Architecture
+**- Cycle GAN Framework**  
+
+![image](https://user-images.githubusercontent.com/32921115/104815327-202ab180-5857-11eb-9138-02773be9e40d.png)
+
+**- Cycle Consistency**  
+
+![image](https://user-images.githubusercontent.com/32921115/104815232-a692c380-5856-11eb-9161-2900eef1c4ba.png)
