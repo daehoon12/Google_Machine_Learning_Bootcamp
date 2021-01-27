@@ -60,22 +60,22 @@
 
 ## 나오게 된 계기  
 - 더 큰 input vector일 수록 많은 파라미터를 가짐.  
-- but learning data에 굶주림도 증가해, 충분한 양의 데이터가 없으면 overfitting이 일어남.  
-- convolutional 구조로 모델의 parameter를 줄이긴 했지만, 대량의 label이 필요한 데이터를 요구함. 이 데이터들은 희소하고 만드는데 비싸다.  
-- 즉, Unsupervised 방식인 Embedding learning or 저차원 표현으로 이 문제를 해결  
+- but 데이터의 요구량도 증가가 되어 충분한 양의 데이터가 없으면 overfitting이 일어남.  
+- convolutional 구조로 모델의 parameter를 줄이긴 했지만, **대량의 label이 필요한 데이터**를 요구함. 이 데이터들은 희소하고 만드는데 비싸다.  
 
 ## 원리 및 아키텍처  
 
-![image](https://user-images.githubusercontent.com/32921115/104697759-9219d280-5753-11eb-80d4-351ea4763694.png)
+![image](https://user-images.githubusercontent.com/32921115/105944435-a5f3fb80-60a6-11eb-81bb-7723958ed5b8.png)
 
 - Encoder : 데이터 입력을 받고 **이를 저차원 벡터로 압축한다. (일종의 손실 압축)**, 중요한 feature를 최대한 보존하는 것을 목표로 하며, 둔감한 feature는 손실시킴.  
-- Decoder : 임의의 레이블에 임베딩을 맞추는 대신 계산을 반전해 원래 입력으로 재구성  
+- Decoder : 임의의 레이블에 임베딩을 맞추는 대신 계산을 반전해 원래 입력으로 재구성한다.  
 - 입력과 출력이 동일함.  
 
 ## 효과  
 - 데이터 압축 : feature의 수가 줄어 dimension이 줄어 memory가 적어짐.  
 - curse of dimensionality 회피 : 데이터의 dimension이 증가할 수록 모델 추청에 필요한 data의 개수가 기하급수적으로 증가하는데, feature 수를 줄여줌으로써, 데이터의 dimension을 감소시킴.  
-- 
+- 중요한 feature 발견 : 저차원 벡터로 압축하는 과정에서 쓸모없는 feature는 다 손실시켜, 중요한 feature를 찾기가 수월하다.  
+
 
 ## 5. Dropout의 효과는?  
 1. Voting 효과 : 무작위로 neuron을 삭제하고 learning을 반복하면, 모든 neuron들이 골구로 fitting이 되어 평균적으로 잘 예측해 어떤 데이터든지 다 분류할 수 있게 된다. 이를 Voting 효과라고 한다.  
