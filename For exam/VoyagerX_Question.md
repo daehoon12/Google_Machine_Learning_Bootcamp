@@ -91,7 +91,7 @@
 
 1. Parameter Sharing : 3x3 filter를 사용한다 가정할 때 filter 1개당 9개의 weight가 존재, 모든 input data는 이 filter를 사용함으로 동일한 parameter를 공유. **계산량이 현저하게 준다.**  
 
-2. Sparsity of Connection : layer간 parameter들이 fully-connected layer처럼 다 연결되어 있는 구조가 아니라, filter의 크기와 수만큼만 연결되어 있다. **parameter의 수가 줄어들어 요구되는 데이터의 양 감소 -> Overfitting 방지**  
+2. Sparsity of Connection : layer의 node들이 fully-connected layer처럼 다 연결되어 있는 구조가 아니라, 같은 filter를 써 sparsity한 연결을 함. **parameter의 수가 줄어들어 요구되는 데이터의 양 감소 -> Overfitting 방지**  
 
 ![image](https://user-images.githubusercontent.com/32921115/104586661-1b27ff80-56a9-11eb-9139-c3db96246b2c.png)
 
