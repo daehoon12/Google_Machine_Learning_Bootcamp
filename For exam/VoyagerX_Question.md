@@ -12,8 +12,9 @@
 - 한번에 모든 데이터 셋을 사용해 학습 속도가 느림.  
 
 ## Stochastic Gradient Descent  
+- Batch Gradient Descent보다 훨씬 빠르다.  
 - Batch Size가 1인 Gradient Descent  
-- Iteration이 dataset의 개수  
+- Iteration이 dataset의 개수가 된다.  
 - 하나의 Data가 무작위로 선택되어 learning  
 
 ### 단점  
