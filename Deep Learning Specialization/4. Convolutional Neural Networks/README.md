@@ -94,9 +94,10 @@
 ## Why Convolutions?  
 - 기존 DNN의 문제점 : 기존 DNN에서의 이미지를 학습할 때의 Weight의 개수는 **input 차원 수  * layer node 개수**로 parameter가 증가하면 learning 시간 증가와 overfitting을 야기  
 
-1. Parameter Sharing : 3x3 filter를 사용한다 가정할 때 filter 1개당 9개의 weight가 존재, 모든 input data는 이 filter를 사용함으로 동일한 parameter를 공유. **계산량이 현저하게 준다.**  
+1. Sparsity of Connection : Filter가 Input보다 작아 생긴 성질. 예를 들어 input 이미지는 수백 or 수천개의 픽셀로 이루어지지만, 윤곽선 같이 작고 의미 있는 feature들은 수십개 or 수백개의 픽셀로 이루어진 filter로 검출할 수 있다. 이 덕분에 상대적으로 적은 수의 parameter만 저장해도 되며, 결과적으로는 메모리 사용량이 줄고, 출력을 계산하는 데 필요한 연산의 수도 줄어들어 계산도 빨라진다.  
 
-2. Sparsity of Connection : Parameter sharing을 통해 모든 image data를 넣는 것이 아니라, filter와 똑같은 size의 data를 input으로 넣어서 learning. **데이터가 분할되어 들어가 하나의 사진에서 많은 데이터를 얻음 -> Overfitting 방지**   
+2. Parameter Sharing : CNN에서의 Filter는 input의 모든 곳에 쓰임. 기존 DNN에서 Weight Matrix의 크기는 이전 layer parameter 개수 x 현 layer parameter 개수이고 행렬의 각 성분은 input의 한 성분에 곱해지는 데만 쓰이고, 그 이후에는 다시 쓰이지 않는다. CNN에서는 filter의 값이 모든 input에 대해 쓰인다. 즉 parameter의 수는 (필터의 height x 필터의 width x channel + 1(bias)) x 필터의 개수가 되어 기존 DNN보다 메모리 요구량이 효율적이다.  
+
 
 ![image](https://user-images.githubusercontent.com/32921115/104586661-1b27ff80-56a9-11eb-9139-c3db96246b2c.png)
 
