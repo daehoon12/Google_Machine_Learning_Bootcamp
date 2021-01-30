@@ -57,6 +57,7 @@ y^ : 예측 값
 - 각 layer에서는 tanh, sigmoid 함수를 통과한다. 이 때 Backpropagation을 하면 **미분값은 0~1 사이 값**이 나오고, 이 값을 계속 곱하면 **gradient는 0에 수렴해 올바른 Learning이 되지 않는다.**  
 - Vanising Gradients Problems을 해결하려고 나온 두 개의 기법! **LSTM, GRU**  
 
+
 ## Long short-term memory (LSTM)  
 
 ![image](https://user-images.githubusercontent.com/32921115/103977362-7b580680-51bc-11eb-85bb-ff74c24261c1.png)
@@ -72,22 +73,27 @@ y^ : 예측 값
 
 ![image](https://user-images.githubusercontent.com/32921115/103977886-8d867480-51bd-11eb-80c6-68d465a13238.png)
 
+- 기억을 삭제하기 위한 게이트. 시그모이드 함수를 통과하면 0과 1 사이의 값이 나오는데, 이 값은 삭제 과정을 거친 정보 양.  - 0에 가까울 수록 많이 삭제, 1에 가까울수록 정보가 온전.  
 - 현재 time-step t의 입력값 x_t와 이전 Hidden state h_(t-1)을 고려해, **이전 Cell State를 얼마나 보존할 지 판단한다.**  
 
 ### Input Gate  
 
 ![image](https://user-images.githubusercontent.com/32921115/103978015-d9391e00-51bd-11eb-8156-17e831c65868.png)
 
+- 현재 정보를 기억하기 위한 Gate, 시그모이드와 tanh 함수를 지나 0과 1 사이의 값과, -1과 1 사이의 값을 통해 Cell State에서 기억할 정보의 양을 구한다.  
 - 현재 time-step t의 input x_t와 이전 Hidden State h_(t-1)를 고려해, **Cell State에 현재 State에 대한 값을 얼마나 더할지 판단한다.**  
 
-### Cell State Updadte  
+### Cell State Update  
 
 ![image](https://user-images.githubusercontent.com/32921115/103978133-1ef5e680-51be-11eb-812c-e0bc1f1817e8.png)
+
+- 이전의 Cell State 값에 Forget gate의 값을 곱하고, Input Gate에서 나온 값들을 곱해 더한다.  
 
 ### Output Gate  
 
 ![image](https://user-images.githubusercontent.com/32921115/103978293-87dd5e80-51be-11eb-8706-c67b2ba1e95b.png)
 
+- 현재 시점 t의 x 값과 이전 시점 t-1의 hidden state가 시그모이드 함수를 지난 값.  
 - 업데이트된 Cell State와와 x_t 와 h_(t-1) 을 고려해 Hidden State 업데이트하고, 다음 time-step t+1 로 전달  
 - [] 의미는 벡터를 쌓아놓은 걸로 생각하면 된다.  
 
