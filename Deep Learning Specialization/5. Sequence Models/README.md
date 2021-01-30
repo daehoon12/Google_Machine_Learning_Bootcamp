@@ -16,6 +16,7 @@
 - word의 벡터는 voca와 똑같은 dimension을 가짐  
 
 ## Recurrent Neural Network Model  
+- RNN(Recurrent Neural Network)은 시퀀스(Sequence) 모델. 입력과 출력을 시퀀스 단위로 처리하는 모델이다.  
 
 ### Why not a standard network?  
 - 다른 예제에서 input, output이 다른 길이일 수 있음.  
