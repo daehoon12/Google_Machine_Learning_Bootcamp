@@ -143,7 +143,8 @@ y^ : 예측 값
 - **각 단어를 하나의 Object로 여기기 때문에 단어 간의 관계를 추론할 수 없다.** (I want a glass of orange ____ 를 통해서 빈칸에 juice가 들어가도록 학습했다고 하더라고, I want a glass of apple ____ 이라는 입력이 들어왔을 때, apple을 orange와 비교해서 비슷하다고 여겨서 juice를 추론할 수가 없음.)  
 
 ### Featurized Representation : Word Embedding  
-- Word를 사용자가 지정한 size만큼 숫자로 된 vector로 만듬.  
+- 단어를 사용자가 지정한 크기의 벡터로 표현하는 방법을 워드 임베딩(word embedding)이라고 한다.  
+- 이 밀집 벡터(Dense Vector)를 워드 임베딩 과정을 통해 나온 결과라고 하여 임베딩 벡터(embedding vector)라고도 한다.  
 
 ![image](https://user-images.githubusercontent.com/32921115/103986649-79973e80-51ce-11eb-9436-268cf030d4f7.png)
 
