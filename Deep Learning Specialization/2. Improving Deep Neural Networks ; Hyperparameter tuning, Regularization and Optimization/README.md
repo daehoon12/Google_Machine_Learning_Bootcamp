@@ -84,14 +84,19 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 ![image](https://user-images.githubusercontent.com/32921115/107626638-71389480-6ca1-11eb-936f-873fca8a78ce.png)
 
+- Weigth의 값에 미분계수 (2 x weight)로 페널티를 주어, 0에 수렴하도록 만듬. 아예 0으로 만들지는 않는다.  
+- 전체적인 weight 값의 절대값을 감소시켜 Model을 덜 구불구불하게(linear)하게 만든다.  
 
-### 선택의 기준  
-- 가중치 w 가 작아지도록 학습한 다는 것은 결국 Local noise 에 영향을 덜 받도록 하겠다는 것이며 이는 평균 데이터와 크게 다른 데이터 (Outlier)의 영향을 더 적게 받도록 하겠다는 것  
+### L1 Regularization  
 
-![image](https://user-images.githubusercontent.com/32921115/104831940-9d463d00-58d0-11eb-95c0-b7ad3b240163.png)
+![image](https://user-images.githubusercontent.com/32921115/107627573-d6d95080-6ca2-11eb-8299-5d406fea775b.png)
 
-- 위의 그림에서 L1은 빨간 or 파란선을 사용해 특정 feature를 0으로 처리하는 것이 가능함. 즉 **Feature Selection**이 가능  
-- 하지만 미분 불가능한 점이 있기에 Gradient-base learning에서 사용하지 않음. (L2를 많이 사용하는 이유)  
+- Weigth의 값에 상수를 계속 빼줘 값을 0으로 만든다. 상수는 weigth와 무관한 값을 가짐. 
+
+### L1 Vs. L2  
+- L2 미분계수는 매번 weigth의 x%만큼 제거. -> 절대 0이 되지는 않음.  
+- L1 미분계수는 매번 weigth에서 일정 상수를 빼는 것으로 생각. 하지만 절대값으로 인해 0에서 불연속성을 가지며, 이로 인해 0을 지나는 빼기 결과값은 0이 되어 제거가 된다. -> Weigth를 제거하는 효과를 가짐.  
+
 
 #### 왜 Regularization을 하면 Overfitting이 방지가 될까?
 - Tanh 함수를 예로 들면  
