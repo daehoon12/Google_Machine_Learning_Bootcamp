@@ -86,7 +86,7 @@ dL = -1/a (y가 0일 때) -> 항상 음수 -> 오른쪽으로 감.
 dL = 1/(1-a) (y가 1일 때)  -> 항상 양수 -> 왼쪽으로 감.
 
 ## Gradient Descent  
-- 최적의 Weight, bias 값을 찾기위한 Optimizer 방법
+- Loss Function의 값을 줄이기 위한 방법 중 하나. 기본 개념은 미분 값을 통해 Weight와 bias를 업데이트하고 기울기가 극값에 이를 때 까지 반복한다. 최적의 Weight, bias 값을 찾기위한 Optimizer 방법  
 
 ## Gradient Descent : Example  
 
