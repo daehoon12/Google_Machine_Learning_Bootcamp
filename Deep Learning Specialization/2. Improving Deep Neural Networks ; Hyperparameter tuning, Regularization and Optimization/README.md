@@ -79,17 +79,13 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 과적합은 모델이 데이터 세트에 매우 적합하다고 해석할 수 있으며, 이는 실제로 데이터로부터 배우기보다는 우리가 보여준 데이터를 암기하는 것처럼 보입니다. 직관적으로, 큰 계수를 갖는 것은 데이터를 암기하는 증거로 볼 수 있다.   
 - 예를 들어, 데이터 세트와 크게 다른 Noise 데이터가 있을 때, 이러한 노이즈로 인해 모델이 더 높은 수준의 계수의 weigth를 부여하고, 이 Model은 기존의 training data보다 더 복잡한 Model로 변형된다.   
 
-### L1 Regularization  
-
-![image](https://user-images.githubusercontent.com/32921115/104831883-fcf01880-58cf-11eb-94de-b4ad0cc077fa.png)
-
-- L1 Regularization을 사용하는 regression model을 Lasso Regression이라고 한다.  
-
 ### L2 Regularization  
+![image](https://user-images.githubusercontent.com/32921115/107626463-2d458f80-6ca1-11eb-8f85-51b29f0c75e5.png)
 
-![image](https://user-images.githubusercontent.com/32921115/104831892-1abd7d80-58d0-11eb-8e5b-d2dd9c9b334b.png)
+![image](https://user-images.githubusercontent.com/32921115/107626473-2fa7e980-6ca1-11eb-9eb4-691bf432a477.png)
 
-- L2 Regularization을 사용하는 regression model을 Ridge Regression이라고 한다.  
+![image](https://user-images.githubusercontent.com/32921115/107626479-320a4380-6ca1-11eb-8104-158210d75394.png)
+
 
 ### 선택의 기준  
 - 가중치 w 가 작아지도록 학습한 다는 것은 결국 Local noise 에 영향을 덜 받도록 하겠다는 것이며 이는 평균 데이터와 크게 다른 데이터 (Outlier)의 영향을 더 적게 받도록 하겠다는 것  
