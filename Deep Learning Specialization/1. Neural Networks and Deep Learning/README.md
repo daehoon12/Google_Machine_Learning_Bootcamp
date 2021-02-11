@@ -31,6 +31,16 @@
 
 https://m.blog.naver.com/PostView.nhn?blogId=wjddudwo209&logNo=220006551591&proxyReferer=https:%2F%2Fwww.google.com%2F
 
+### K-means Clustering  
+- Clustering : 어떤 데이터들이 주어졌을 때, 그 데이터들을 클러스터로 그루핑 시켜주는 것.  
+- k : 클러스터의 개수  
+- means : 한 클러스터 안의 데이터 중심, 즉 centroid를 뜻함.  
+- K개의 centoid를 기반으로 K개의 클러스터를 만들어 준다.  
+
+### K-means Clustering (Algorithm)  
+- i번째 클러스터의 중심을 {\displaystyle \mu _{i}}\mu _{i}, 클러스터에 속하는 점의 집합을 {\displaystyle S_{i}}S_{i}라고 할 때, 전체 분산은 다음과 같이 계산된다.
+
+
 
 ## Logistic Regression
 - Regression (회귀) : 입력에 대한 출력값이 연속적인 실수값으로 출력  
