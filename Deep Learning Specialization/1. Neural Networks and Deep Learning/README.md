@@ -23,6 +23,14 @@
 - 데이터 셋 X를 단위벡터 e의 임의의 축 P에 정사영했을 때, 이 떄의 분산이 가장 큰 축을 찾는 문제 (학습).  
 - https://excelsior-cjh.tistory.com/167 참고
 
+#### 분산이 큰 데이터를 찾는 이유?  
+
+![image](https://user-images.githubusercontent.com/32921115/107609780-4b03fc00-6c83-11eb-925e-a210169cd074.png)
+
+- 분산이 클수록 영향을 많이 준다. 즉 분산이 큰 변수는 데이터를 포괄적으로 파악하기 쉽게 한다. 분산이 크게끔 변수추출을 하면 자료를 포괄적으로 파악하기 쉬워진다.  
+
+https://m.blog.naver.com/PostView.nhn?blogId=wjddudwo209&logNo=220006551591&proxyReferer=https:%2F%2Fwww.google.com%2F
+
 
 ## Logistic Regression
 - Regression (회귀) : 입력에 대한 출력값이 연속적인 실수값으로 출력  
