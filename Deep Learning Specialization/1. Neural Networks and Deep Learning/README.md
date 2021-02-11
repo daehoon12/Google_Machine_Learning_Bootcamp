@@ -1,5 +1,29 @@
 # Neural Networks and Deep Learning  
-  
+
+## Supervised Learning  
+- Training Data로 input과 output이 같이 제공되는 상황을 문제의 답을 가르쳐 주는 것에 비유해 Supervised Learning이라고 한다.  
+- Learning 결과는 Trainning Data에 포함되지 않은 사진을 구분하는 데 적용한다.  
+- Classfication, Regression 등
+
+### 1. Classification  
+- 주어진 데이터를 **정해진 카테고리**에 따라 분류하는 문제  
+- 이메일이 스팸인지 아닌지 예측, 개와 고양이 구분 등  
+
+### 2. Regression  
+- **연속된 값을 예측하는 문제**를 말함. 어떤 Pattern이나 trend 경향을 예측할 때 사용.  
+- 공부시간에 따른 전공 시험 점수, 집의 크기에 따른 매매가 등  
+
+## Unsupervised Learning  
+- Training data로 output 없이 input만 제공되는 상황을 문제(input)의 답(output)을 가르쳐 주지 않는 것에 비유해 Unsupervised Leaerning이라고 한다.  
+- 비공식적으로 사람이 데이터에 일일이 Target을 부여하지 않아도 **데이터 분포로부터 정보를 최대한 뽑아내려는 학습 알고리즘을 뜻함.**  
+
+### PCA  
+- 고차원의 data를 저차원의 data로 축소시키는 차원 축소 방법 중 하나.  
+- 통게적으로 상관관계가 없도록 데이터셋을 회전시키는 기술.  
+- 데이터 셋 X를 단위벡터 e의 임의의 축 P에 정사영했을 때, 이 떄의 분산이 가장 큰 축을 찾는 문제 (학습).  
+- https://excelsior-cjh.tistory.com/167 참고
+
+
 ## Logistic Regression
 - Regression (회귀) : 입력에 대한 출력값이 연속적인 실수값으로 출력  
 - y =wx + b 인 선형 식을 Activation 함수에 대입해 Non-Linear하게 만듬.  
