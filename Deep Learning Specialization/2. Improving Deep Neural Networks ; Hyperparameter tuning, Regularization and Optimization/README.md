@@ -47,6 +47,7 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 
 - 만약 High bias (Underfitting)인 경우, **Network를 더 크게 만들거나 학습을 더 길게한다.**    
 - 만약 High Variance (Overfitting)인 경우, **더 많은 데이터를 수집**한다.  
+
 ### Norm  
 - Vector의 크기 (또는 길이)를 측정하는 방법. 두 벡터 사이의 거리를 측정하는 방법  
 
