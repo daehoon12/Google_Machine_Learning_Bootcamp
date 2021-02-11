@@ -80,7 +80,9 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 예를 들어, 데이터 세트와 크게 다른 Noise 데이터가 있을 때, 이러한 노이즈로 인해 모델이 더 높은 수준의 계수의 weigth를 부여하고, 이 Model은 기존의 training data보다 더 복잡한 Model로 변형된다.   
 
 ### L2 Regularization  
-![image](https://user-images.githubusercontent.com/32921115/107626530-48b09a80-6ca1-11eb-8be0-209aed49d78e.png)
+![image](https://user-images.githubusercontent.com/32921115/107626616-6a118680-6ca1-11eb-8369-2729753cd09d.png)
+
+![image](https://user-images.githubusercontent.com/32921115/107626638-71389480-6ca1-11eb-936f-873fca8a78ce.png)
 
 
 ### 선택의 기준  
