@@ -38,8 +38,16 @@ https://m.blog.naver.com/PostView.nhn?blogId=wjddudwo209&logNo=220006551591&prox
 - K개의 centoid를 기반으로 K개의 클러스터를 만들어 준다.  
 
 ### K-means Clustering (Algorithm)  
-- i번째 클러스터의 중심을 {\displaystyle \mu _{i}}\mu _{i}, 클러스터에 속하는 점의 집합을 {\displaystyle S_{i}}S_{i}라고 할 때, 전체 분산은 다음과 같이 계산된다.
+- i번째 클러스터의 중심을 Mu(i), 클러스터에 속하는 점의 집합을 S(i) 라고 할 때, 전체 분산은 다음과 같이 계산된다.
 
+![image](https://user-images.githubusercontent.com/32921115/107610254-881cbe00-6c84-11eb-9d99-f7f9469b2203.png)
+
+- 이 값을 최소화하는 Si를 찾게 끔 학습이 진행된다.  
+- 클러스터 설정 : 각 데이터들로부터 **각 클러스터의 Mu(i)의 유클리드 거리를 게산해**, 해당 데이터에서 가장 가까운 클러스터를 찾아 데이터를 그쪽으로 옮긴다.  
+- Mu(i)를 각 클러스터에 있는 데이터들의 무게중심 값으로 재설정해준다.  
+- 클러스터가 변하지 않을 때 까지 위의 두 과정을 반복한다.  
+
+![image](https://user-images.githubusercontent.com/32921115/107610520-24df5b80-6c85-11eb-8f3d-ef4559214087.png)
 
 
 ## Logistic Regression
