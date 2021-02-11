@@ -79,24 +79,29 @@ Optimal(Base) Error : 거의 0% -> 만약 흐릿한 이미지, 사람도 잘 못
 - 과적합은 모델이 데이터 세트에 매우 적합하다고 해석할 수 있으며, 이는 실제로 데이터로부터 배우기보다는 우리가 보여준 데이터를 암기하는 것처럼 보입니다. 직관적으로, 큰 계수를 갖는 것은 데이터를 암기하는 증거로 볼 수 있다.   
 - 예를 들어, 데이터 세트와 크게 다른 Noise 데이터가 있을 때, 이러한 노이즈로 인해 모델이 더 높은 수준의 계수의 weigth를 부여하고, 이 Model은 기존의 training data보다 더 복잡한 Model로 변형된다.   
 
-### L2 Regularization  
+### L2 Regularization (Weigth Decay)  
 ![image](https://user-images.githubusercontent.com/32921115/107626616-6a118680-6ca1-11eb-8369-2729753cd09d.png)
 
 ![image](https://user-images.githubusercontent.com/32921115/107626638-71389480-6ca1-11eb-936f-873fca8a78ce.png)
 
 - Weigth의 값에 미분계수 (2 x weight)로 페널티를 주어, 0에 수렴하도록 만듬. 아예 0으로 만들지는 않는다.  
 - 전체적인 weight 값의 절대값을 감소시켜 Model을 덜 구불구불하게(linear)하게 만든다.  
+- L2 Regularization을 사용하는 Regression Model을 Ridge Regression이라고 한다.  
 
 ### L1 Regularization  
 
 ![image](https://user-images.githubusercontent.com/32921115/107627573-d6d95080-6ca2-11eb-8299-5d406fea775b.png)
+![image](https://user-images.githubusercontent.com/32921115/107630166-83690180-6ca6-11eb-94cc-b7d238afc866.png)
 
 - Weigth의 값에 상수를 계속 빼줘 값을 0으로 만든다. 상수는 weigth와 무관한 값을 가짐. 
+- 작은 weigth의 값은 거의 0으로 되어, 몇개의 중요한 weigth만 남게 됨.  
+- L1 Regularization을 사용하는 Regression Model을 Lasso Regression이라 한다.  
 
 ### L1 Vs. L2  
-- L2 미분계수는 매번 weigth의 x%만큼 제거. -> 절대 0이 되지는 않음.  
-- L1 미분계수는 매번 weigth에서 일정 상수를 빼는 것으로 생각. 하지만 절대값으로 인해 0에서 불연속성을 가지며, 이로 인해 0을 지나는 빼기 결과값은 0이 되어 제거가 된다. -> Weigth를 제거하는 효과를 가짐.  
-
+- L2 미분계수는 매번 Weight의 x%만큼 제거. -> 즉 w의 값이 작아질 수록 w의 미분계수도 작아진다. -> 절대 0이 되지는 않음.  
+- L1 미분계수는 매번 Weight에서 일정 상수를 빼는 것으로 생각. 하지만 절대값으로 인해 0에서 불연속성을 가지며, 이로 인해 0을 지나는 빼기 결과값은 0이 되어 제거가 된다. -> Weight를 제거하는 효과를 가짐.  
+- 즉 몇 개의 의미 있는 값을 끄집어내고 싶은 Sparse Model 같은 경우에는 L1을 사용. 다만 미분 불가능한 점이 있기 때문에 Gradient-base learning에서는 부적합하다.  
+- L2는 weigth 업데이트 시, weigth의 크기가 직접적인 영향을 미치게 된다. 즉 Weight를 규제할 때 더 효과적.  
 
 #### 왜 Regularization을 하면 Overfitting이 방지가 될까?
 - Tanh 함수를 예로 들면  
