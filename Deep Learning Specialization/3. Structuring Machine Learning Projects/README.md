@@ -1,5 +1,5 @@
 # 3. Structuring Machine Learning Projects  
-
+ 
 ## 1. Introduction to ML Strategy  
 
 ### Orthogonalization  
